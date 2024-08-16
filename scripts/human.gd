@@ -37,16 +37,13 @@ func _on_walk_timer_timeout() -> void:
 
 
 func _on_detection_range_body_entered(body: Node2D) -> void:
-	if body.is_in_group("zombie"):
-		zombie = body
-		$WalkTimer.stop()
-		state_chase = true
-		speed = RUNNING_SPEED
-		
+	zombie = body
+	$WalkTimer.stop()
+	state_chase = true
+	speed = RUNNING_SPEED
 
 
-func _on_detection_range_body_exited(body: Node2D) -> void:
-	if body.is_in_group("zombie"):
-		$WalkTimer.wait_time = randf_range(1, 4)
-		$WalkTimer.start()
-		speed = WALKING_SPEED
+func _on_detection_range_body_exited(_body: Node2D) -> void:
+	$WalkTimer.wait_time = randf_range(1, 4)
+	$WalkTimer.start()
+	speed = WALKING_SPEED

@@ -47,7 +47,9 @@ func _physics_process(_delta: float) -> void:
 		if clumping.length() < SEPARATION_MIN_DISTANCE:
 			velocity += (SEPARATION_MIN_DISTANCE - clumping.length()) * -1 * clumping.normalized() * SEPARATION_SPEED
 	
-	velocity = velocity.normalized() * clamp(velocity.length(), 0, max_speed)
+	if velocity.length() < 5:
+		velocity = Vector2.ZERO
+	velocity = velocity.normalized() * clamp(velocity.length(), 20, max_speed)
 	velocity /= 1.1
 
 

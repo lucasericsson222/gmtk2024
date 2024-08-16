@@ -15,6 +15,11 @@ run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[layer_names]
+
+2d_physics/layer_1="zombies"
+2d_physics/layer_2="humans"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
