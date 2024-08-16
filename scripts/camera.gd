@@ -7,7 +7,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var zombies = get_tree().get_nodes_in_group("zombie")
 	var average_position = Vector2(0, 0)
 	for z in zombies:

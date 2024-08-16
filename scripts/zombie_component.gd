@@ -1,15 +1,15 @@
 extends Node
 
 @export var velocity: Vector2 = Vector2.ZERO
-@export var speed: float = 200 
-var max_speed: float = 400
-const ATTRACTION_SPEED: float = 0.1
-const SEPARATION_SPEED: float = 100
-const SEPARATION_MIN_DISTANCE: float = 50
+@export var speed: float = 50 
+var max_speed: float = 75
+const ATTRACTION_SPEED: float = 0.025
+const SEPARATION_SPEED: float = 50
+const SEPARATION_MIN_DISTANCE: float = 12.25
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	max_speed += randf_range(-10, 10)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,7 +36,7 @@ func _physics_process(_delta: float) -> void:
 	var zombie_average_position = zombie_sum_position / zombie_count
 
 	var displacement_from_center: Vector2 = zombie_average_position - get_parent().position
-	if (displacement_from_center.length() > 100):
+	if (displacement_from_center.length() > 25):
 		velocity += displacement_from_center * ATTRACTION_SPEED
 	
 	input_force.normalized()
@@ -47,4 +47,7 @@ func _physics_process(_delta: float) -> void:
 		if clumping.length() < SEPARATION_MIN_DISTANCE:
 			velocity += (SEPARATION_MIN_DISTANCE - clumping.length()) * -1 * clumping.normalized() * SEPARATION_SPEED
 	
-	velocity = velocity.normalized() * clamp(velocity.length(), 0, 400)
+	velocity = velocity.normalized() * clamp(velocity.length(), 0, max_speed)
+	velocity /= 1.1
+
+
