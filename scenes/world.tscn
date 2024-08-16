@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://hvtbqk1dupo3"]
+[gd_scene load_steps=6 format=3 uid="uid://hvtbqk1dupo3"]
 
 [ext_resource type="PackedScene" uid="uid://c8ww8kehtsk8e" path="res://scenes/zombie.tscn" id="1_orncy"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="1_prdg6"]
 [ext_resource type="PackedScene" uid="uid://dec5kppe387bb" path="res://scenes/human.tscn" id="2_k3rs3"]
 [ext_resource type="Texture2D" uid="uid://diblrnk3bm1tp" path="res://icon.svg" id="4_1wylv"]
+[ext_resource type="PackedScene" uid="uid://cg2s7hhb4i8cu" path="res://scenes/doctor.tscn" id="5_pa1nn"]
 
 [node name="World" type="Node2D"]
 
@@ -35,7 +36,7 @@ position = Vector2(693, 359)
 position = Vector2(941, 271)
 
 [node name="Human3" parent="." instance=ExtResource("2_k3rs3")]
-position = Vector2(450, 180)
+position = Vector2(376, 323)
 
 [node name="Human4" parent="." instance=ExtResource("2_k3rs3")]
 position = Vector2(288, 568)
@@ -51,3 +52,45 @@ position = Vector2(578, 326)
 scale = Vector2(9, 5.10938)
 texture = ExtResource("4_1wylv")
 metadata/_edit_lock_ = true
+
+[node name="Human6" parent="." instance=ExtResource("2_k3rs3")]
+position = Vector2(685, 461)
+
+[node name="Human5" parent="." instance=ExtResource("2_k3rs3")]
+position = Vector2(239, 261)
+
+[node name="Human7" parent="." instance=ExtResource("2_k3rs3")]
+position = Vector2(277, 329)
+
+[node name="Human8" parent="." instance=ExtResource("2_k3rs3")]
+position = Vector2(518, 110)
+
+[node name="Human9" parent="." instance=ExtResource("2_k3rs3")]
+position = Vector2(377, 142)
+
+[node name="Human10" parent="." instance=ExtResource("2_k3rs3")]
+position = Vector2(420, 197)
+
+[node name="Human11" parent="." instance=ExtResource("2_k3rs3")]
+position = Vector2(687, 248)
+
+[node name="Human12" parent="." instance=ExtResource("2_k3rs3")]
+position = Vector2(584, 165)
+
+[node name="Doctor" parent="." instance=ExtResource("5_pa1nn")]
+position = Vector2(137, 438)
+
+[node name="Doctor2" parent="." instance=ExtResource("5_pa1nn")]
+position = Vector2(245, 448)
+
+[node name="Doctor3" parent="." instance=ExtResource("5_pa1nn")]
+position = Vector2(166, 315)
+
+[node name="Doctor4" parent="." instance=ExtResource("5_pa1nn")]
+position = Vector2(329, 246)
+
+[node name="Doctor5" parent="." instance=ExtResource("5_pa1nn")]
+position = Vector2(266, 207)
+
+[node name="Doctor6" parent="." instance=ExtResource("5_pa1nn")]
+position = Vector2(434, 71)
