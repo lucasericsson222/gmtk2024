@@ -1,36 +1,36 @@
 [gd_scene load_steps=5 format=3 uid="uid://ceifm35mxfh23"]
 
 [ext_resource type="Script" path="res://scripts/human.gd" id="1_xa53d"]
-[ext_resource type="Texture2D" uid="uid://diblrnk3bm1tp" path="res://icon.svg" id="2_xwbun"]
+[ext_resource type="Texture2D" uid="uid://c0owr654pqgqm" path="res://assets/human.png" id="2_51nk0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_otaoi"]
-size = Vector2(84.5, 93.5)
+size = Vector2(8, 13.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8j2rp"]
-radius = 131.381
+radius = 28.0
 
 [node name="Human" type="CharacterBody2D"]
+position = Vector2(-2, -1)
 script = ExtResource("1_xa53d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -47)
+position = Vector2(1, 1.75)
 shape = SubResource("RectangleShape2D_otaoi")
 
 [node name="DetectionRange" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
-position = Vector2(0, -47)
+position = Vector2(1, 2)
 shape = SubResource("CircleShape2D_8j2rp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0.125003, -47.25)
-scale = Vector2(0.654297, 0.722656)
-texture = ExtResource("2_xwbun")
+position = Vector2(2, 1)
+texture = ExtResource("2_51nk0")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="WalkTimer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
 
 [connection signal="body_entered" from="DetectionRange" to="." method="_on_detection_range_body_entered"]
 [connection signal="body_exited" from="DetectionRange" to="." method="_on_detection_range_body_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="WalkTimer" to="." method="_on_walk_timer_timeout"]

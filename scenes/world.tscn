@@ -1,16 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://hvtbqk1dupo3"]
+[gd_scene load_steps=3 format=3 uid="uid://d33h5da1scd8p"]
 
-[ext_resource type="PackedScene" uid="uid://c8ww8kehtsk8e" path="res://scenes/zombie.tscn" id="1_orncy"]
+[ext_resource type="PackedScene" uid="uid://bh5yma14yv02i" path="res://scenes/zombie.tscn" id="1_orncy"]
+[ext_resource type="PackedScene" uid="uid://ceifm35mxfh23" path="res://scenes/human.tscn" id="2_k3rs3"]
 
 [node name="World" type="Node2D"]
 
 [node name="Zombie" parent="." instance=ExtResource("1_orncy")]
+position = Vector2(89, 92)
 
 [node name="Zombie2" parent="." instance=ExtResource("1_orncy")]
-position = Vector2(184, 38)
+position = Vector2(233, 96)
 
 [node name="Zombie3" parent="." instance=ExtResource("1_orncy")]
-position = Vector2(310, 258)
+position = Vector2(236, 232)
 
 [node name="Zombie4" parent="." instance=ExtResource("1_orncy")]
 position = Vector2(106, 232)
@@ -23,3 +25,15 @@ position = Vector2(788, 291)
 
 [node name="Zombie7" parent="." instance=ExtResource("1_orncy")]
 position = Vector2(832, 479)
+
+[node name="Human" parent="." instance=ExtResource("2_k3rs3")]
+position = Vector2(693, 359)
+
+[node name="Human2" parent="." instance=ExtResource("2_k3rs3")]
+position = Vector2(941, 271)
+
+[node name="Human3" parent="." instance=ExtResource("2_k3rs3")]
+position = Vector2(499, 178)
+
+[node name="Human4" parent="." instance=ExtResource("2_k3rs3")]
+position = Vector2(288, 568)
