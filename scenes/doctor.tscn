@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6b1p8uea5ix1"]
+
+[ext_resource type="Texture2D" uid="uid://b8kephriovxr6" path="res://assets/doctor.png" id="1_f2ut2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hb2hw"]
+size = Vector2(7, 14)
+
+[node name="Doctor" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_hb2hw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_f2ut2")
+
+[node name="DetectionRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
