@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cg2s7hhb4i8cu"]
+[gd_scene load_steps=5 format=3 uid="uid://cg2s7hhb4i8cu"]
 
 [ext_resource type="Texture2D" uid="uid://b8kephriovxr6" path="res://assets/doctor.png" id="1_f2ut2"]
+[ext_resource type="Script" path="res://scripts/doctor.gd" id="1_iatac"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hb2hw"]
 size = Vector2(7, 14)
@@ -9,6 +10,7 @@ size = Vector2(7, 14)
 radius = 69.0
 
 [node name="Doctor" type="CharacterBody2D"]
+script = ExtResource("1_iatac")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
