@@ -1,7 +1,7 @@
 extends Node
 
 @export var velocity = Vector2.ZERO
-@export var speed = 200 
+@export var speed = 100 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -33,5 +33,3 @@ func _physics_process(_delta: float) -> void:
 	var zombie_average_position = zombie_sum_position / zombie_count
 
 	velocity *= speed
-
-
