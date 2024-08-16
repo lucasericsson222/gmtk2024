@@ -16,13 +16,13 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	
 	var input_force = Vector2.ZERO
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("left"):
 		input_force += Vector2(-1, 0)
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("right"):
 		input_force += Vector2(1, 0)
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed("up"):
 		input_force += Vector2(0, -1)
-	if Input.is_action_pressed("ui_down"):
+	if Input.is_action_pressed("down"):
 		input_force += Vector2(0, 1)
 
 

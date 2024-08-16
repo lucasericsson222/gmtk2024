@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cg2s7hhb4i8cu"]
+[gd_scene load_steps=5 format=3 uid="uid://b6b1p8uea5ix1"]
 
 [ext_resource type="Script" path="res://scripts/doctor.gd" id="1_iatac"]
 [ext_resource type="Texture2D" uid="uid://btthprxygasfu" path="res://assets/Doctor-Sheet_full_syringe.png" id="2_7xw8w"]
