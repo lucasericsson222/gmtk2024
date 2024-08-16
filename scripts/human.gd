@@ -21,11 +21,14 @@ func _physics_process(_delta: float) -> void:
 	if state_chase:
 		new_direction = position - zombie.position + Vector2(randf_range(-0.3, 0.3), randf_range(-0.3, 0.3))
 		new_direction = new_direction.normalized()
-	direction = old_direction.lerp(new_direction, t)
+		direction = new_direction
+	else:
+		direction = old_direction.lerp(new_direction, t)
+		if t < 1.0:
+			t += 0.02
+	
 	velocity = direction * speed
-	if t < 1.0:
-		t += 0.02
-
+	$AnimatedSprite2D.flip_h = direction.x < 0
 	move_and_slide()
 
 

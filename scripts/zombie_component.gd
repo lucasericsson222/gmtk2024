@@ -51,5 +51,3 @@ func _physics_process(_delta: float) -> void:
 		velocity = Vector2.ZERO
 	velocity = velocity.normalized() * clamp(velocity.length(), 20, max_speed)
 	velocity /= 1.1
-
-

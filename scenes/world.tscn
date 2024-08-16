@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://hvtbqk1dupo3"]
+[gd_scene load_steps=5 format=3 uid="uid://d33h5da1scd8p"]
 
 [ext_resource type="PackedScene" uid="uid://c8ww8kehtsk8e" path="res://scenes/zombie.tscn" id="1_orncy"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="1_prdg6"]

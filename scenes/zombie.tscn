@@ -20,5 +20,3 @@ shape = SubResource("RectangleShape2D_x1fal")
 
 [node name="ZombieComponent" type="Node" parent="."]
 script = ExtResource("3_mt8pv")
-velocity = null
-speed = null
