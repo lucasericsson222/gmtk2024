@@ -1,0 +1,4 @@
+[gd_resource type="SystemFont" format=3 uid="uid://dwbh23465p0o5"]
+
+[resource]
+font_names = PackedStringArray("Poor Richard")

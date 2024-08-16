@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dec5kppe387bb"]
+[gd_scene load_steps=11 format=3 uid="uid://ceifm35mxfh23"]
 
 [ext_resource type="Script" path="res://scripts/human.gd" id="1_xa53d"]
 [ext_resource type="Texture2D" uid="uid://c0owr654pqgqm" path="res://assets/human.png" id="2_51nk0"]
@@ -7,7 +7,7 @@
 size = Vector2(8, 13.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8j2rp"]
-radius = 28.0
+radius = 34.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rt43t"]
 atlas = ExtResource("2_51nk0")
