@@ -14,3 +14,12 @@ position = Vector2(310, 258)
 
 [node name="Zombie4" parent="." instance=ExtResource("1_orncy")]
 position = Vector2(106, 232)
+
+[node name="Zombie5" parent="." instance=ExtResource("1_orncy")]
+position = Vector2(336, 547)
+
+[node name="Zombie6" parent="." instance=ExtResource("1_orncy")]
+position = Vector2(788, 291)
+
+[node name="Zombie7" parent="." instance=ExtResource("1_orncy")]
+position = Vector2(832, 479)

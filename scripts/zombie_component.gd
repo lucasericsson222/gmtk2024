@@ -1,7 +1,11 @@
 extends Node
 
-@export var velocity = Vector2.ZERO
-@export var speed = 200 
+@export var velocity: Vector2 = Vector2.ZERO
+@export var speed: float = 200 
+var max_speed: float = 400
+const ATTRACTION_SPEED: float = 0.1
+const SEPARATION_SPEED: float = 100
+const SEPARATION_MIN_DISTANCE: float = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,18 +14,17 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
-	velocity = Vector2.ZERO
 	
+	var input_force = Vector2.ZERO
 	if Input.is_action_pressed("ui_left"):
-		velocity += Vector2(-1, 0)
+		input_force += Vector2(-1, 0)
 	if Input.is_action_pressed("ui_right"):
-		velocity += Vector2(1, 0)
+		input_force += Vector2(1, 0)
 	if Input.is_action_pressed("ui_up"):
-		velocity += Vector2(0, -1)
+		input_force += Vector2(0, -1)
 	if Input.is_action_pressed("ui_down"):
-		velocity += Vector2(0, 1)
+		input_force += Vector2(0, 1)
 
-	velocity.normalized()
 
 	var zombies = get_tree().get_nodes_in_group("zombie")
 	var zombie_count = zombies.size()
@@ -32,6 +35,18 @@ func _physics_process(_delta: float) -> void:
 	assert(zombie_count > 0)
 	var zombie_average_position = zombie_sum_position / zombie_count
 
-	velocity *= speed
+	var displacement_from_center: Vector2 = zombie_average_position - get_parent().position
+	if (displacement_from_center.length() > 100):
+		velocity += displacement_from_center * ATTRACTION_SPEED
+	
+	input_force.normalized()
+	velocity += input_force * displacement_from_center.length()
+
+	for zombie: Node2D in zombies:
+		var clumping: Vector2 = zombie.position - get_parent().position
+		if clumping.length() < SEPARATION_MIN_DISTANCE:
+			velocity += (SEPARATION_MIN_DISTANCE - clumping.length()) * -1 * clumping.normalized() * SEPARATION_SPEED
+	
+	velocity = velocity.normalized() * clamp(velocity.length(), 0, 400)
 
 
