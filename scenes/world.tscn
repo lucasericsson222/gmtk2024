@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://hvtbqk1dupo3"]
+[gd_scene load_steps=5 format=3 uid="uid://d33h5da1scd8p"]
 
 [ext_resource type="PackedScene" uid="uid://bh5yma14yv02i" path="res://scenes/zombie.tscn" id="1_orncy"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="1_prdg6"]
-[ext_resource type="PackedScene" path="res://scenes/human.tscn" id="2_k3rs3"]
+[ext_resource type="PackedScene" uid="uid://ceifm35mxfh23" path="res://scenes/human.tscn" id="2_k3rs3"]
 [ext_resource type="Texture2D" uid="uid://diblrnk3bm1tp" path="res://icon.svg" id="4_1wylv"]
 
 [node name="World" type="Node2D"]

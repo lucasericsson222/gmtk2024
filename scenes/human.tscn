@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ceifm35mxfh23"]
+[gd_scene load_steps=11 format=3 uid="uid://ceifm35mxfh23"]
 
 [ext_resource type="Script" path="res://scripts/human.gd" id="1_xa53d"]
 [ext_resource type="Texture2D" uid="uid://c0owr654pqgqm" path="res://assets/human.png" id="2_51nk0"]
@@ -8,6 +8,49 @@ size = Vector2(8, 13.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8j2rp"]
 radius = 28.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rt43t"]
+atlas = ExtResource("2_51nk0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubvr4"]
+atlas = ExtResource("2_51nk0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urvux"]
+atlas = ExtResource("2_51nk0")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgixk"]
+atlas = ExtResource("2_51nk0")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3ly4"]
+atlas = ExtResource("2_51nk0")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qs1yk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rt43t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubvr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urvux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgixk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3ly4")
+}],
+"loop": true,
+"name": &"run",
+"speed": 15.0
+}]
 
 [node name="Human" type="CharacterBody2D"]
 position = Vector2(-2, -1)
@@ -23,13 +66,15 @@ shape = SubResource("RectangleShape2D_otaoi")
 position = Vector2(1, 2)
 shape = SubResource("CircleShape2D_8j2rp")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2, 1)
-texture = ExtResource("2_51nk0")
-
 [node name="WalkTimer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, 1)
+sprite_frames = SubResource("SpriteFrames_qs1yk")
+animation = &"run"
+autoplay = "run"
 
 [connection signal="body_entered" from="DetectionRange" to="." method="_on_detection_range_body_entered"]
 [connection signal="body_exited" from="DetectionRange" to="." method="_on_detection_range_body_exited"]
