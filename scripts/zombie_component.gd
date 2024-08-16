@@ -48,5 +48,3 @@ func _physics_process(_delta: float) -> void:
 			velocity += (SEPARATION_MIN_DISTANCE - clumping.length()) * -1 * clumping.normalized() * SEPARATION_SPEED
 	
 	velocity = velocity.normalized() * clamp(velocity.length(), 0, 400)
-
-
