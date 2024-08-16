@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://hvtbqk1dupo3"]
+[gd_scene load_steps=5 format=3 uid="uid://hvtbqk1dupo3"]
 
 [ext_resource type="PackedScene" uid="uid://c8ww8kehtsk8e" path="res://scenes/zombie.tscn" id="1_orncy"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="1_prdg6"]
 [ext_resource type="PackedScene" path="res://scenes/human.tscn" id="2_k3rs3"]
+[ext_resource type="Texture2D" uid="uid://diblrnk3bm1tp" path="res://icon.svg" id="4_1wylv"]
 
 [node name="World" type="Node2D"]
 
@@ -10,22 +11,22 @@
 position = Vector2(89, 92)
 
 [node name="Zombie2" parent="." instance=ExtResource("1_orncy")]
-position = Vector2(233, 96)
+position = Vector2(115, 82)
 
 [node name="Zombie3" parent="." instance=ExtResource("1_orncy")]
-position = Vector2(236, 232)
+position = Vector2(131, 102)
 
 [node name="Zombie4" parent="." instance=ExtResource("1_orncy")]
-position = Vector2(106, 232)
+position = Vector2(55, 87)
 
 [node name="Zombie5" parent="." instance=ExtResource("1_orncy")]
-position = Vector2(336, 547)
+position = Vector2(85, 57)
 
 [node name="Zombie6" parent="." instance=ExtResource("1_orncy")]
-position = Vector2(788, 291)
+position = Vector2(138, 70)
 
 [node name="Zombie7" parent="." instance=ExtResource("1_orncy")]
-position = Vector2(832, 479)
+position = Vector2(122, 51)
 
 [node name="Human" parent="." instance=ExtResource("2_k3rs3")]
 position = Vector2(693, 359)
@@ -34,7 +35,7 @@ position = Vector2(693, 359)
 position = Vector2(941, 271)
 
 [node name="Human3" parent="." instance=ExtResource("2_k3rs3")]
-position = Vector2(499, 178)
+position = Vector2(450, 180)
 
 [node name="Human4" parent="." instance=ExtResource("2_k3rs3")]
 position = Vector2(288, 568)
@@ -43,3 +44,10 @@ position = Vector2(288, 568)
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 script = ExtResource("1_prdg6")
+
+[node name="Icon" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(578, 326)
+scale = Vector2(9, 5.10938)
+texture = ExtResource("4_1wylv")
+metadata/_edit_lock_ = true

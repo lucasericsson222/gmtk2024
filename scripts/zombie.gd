@@ -5,4 +5,7 @@ extends CharacterBody2D
 func _physics_process(_delta: float) -> void:
 	# Add the gravity.
 	velocity = zombie_component.velocity
+
+	$Sprite.flip_h = velocity.x < 0
+
 	move_and_slide()
