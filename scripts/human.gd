@@ -28,7 +28,7 @@ func _physics_process(_delta: float) -> void:
 		new_direction = new_direction.normalized()
 		direction = new_direction
 	elif dead:
-		pass
+		direction = Vector2.ZERO
 	else:
 		direction = old_direction.lerp(new_direction, t)
 		if t < 1.0:

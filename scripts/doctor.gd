@@ -78,6 +78,9 @@ func _physics_process(_delta: float) -> void:
 	velocity /= 1.1
 
 	velocity = clamp(velocity.length(), 0, max_speed) * velocity.normalized()
+
+	if $AnimatedSprite2D.animation == "death":
+		velocity = Vector2.ZERO
 	
 	move_and_slide()
 
