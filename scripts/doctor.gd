@@ -3,8 +3,7 @@ extends CharacterBody2D
 enum {RUNNING, TRACKING, ATTACKING}
 
 var state = RUNNING
-var speed = 100 
-var max_speed: float = 10 
+var max_speed: float = 60 
 var position_fix_speed: float = 8 
 var syringe_laser_scene = preload("res://scenes/syringe_laser.tscn")
 var attacking_offset = 20

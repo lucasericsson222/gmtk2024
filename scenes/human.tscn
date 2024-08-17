@@ -105,10 +105,11 @@ size = Vector2(10, 15)
 [node name="Human" type="CharacterBody2D"]
 position = Vector2(-2, -1)
 collision_layer = 2
-collision_mask = 2
+collision_mask = 10
 script = ExtResource("1_xa53d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(2, 1)
 shape = SubResource("RectangleShape2D_otaoi")
 
@@ -136,6 +137,7 @@ metadata/_edit_lock_ = true
 animated_sprite = NodePath("../AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ConversionComponent"]
+visible = false
 position = Vector2(2, 1)
 shape = SubResource("RectangleShape2D_pfk08")
 metadata/_edit_lock_ = true

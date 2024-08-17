@@ -51,7 +51,9 @@ down={
 2d_physics/layer_1="zombies"
 2d_physics/layer_2="humans"
 2d_physics/layer_3="healing"
+2d_physics/layer_4="walls"
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

@@ -25,27 +25,33 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("down"):
 		input_force += Vector2(0, 1)
 
+	input_force.normalized()
+	input_force = input_force * max_speed
 
 	var zombies = get_tree().get_nodes_in_group("zombie")
-	var zombie_count = zombies.size()
-	var zombie_sum_position = Vector2.ZERO
-	for zombie: Node2D in zombies:
-		zombie_sum_position += zombie.position
+	if zombies.size() > 1:
+		var zombie_count = zombies.size()
+		var zombie_sum_position = Vector2.ZERO
+		for zombie: Node2D in zombies:
+			zombie_sum_position += zombie.position
 
-	assert(zombie_count > 0)
-	var zombie_average_position = zombie_sum_position / zombie_count
+		assert(zombie_count > 0)
+		var zombie_average_position = zombie_sum_position / zombie_count
 
-	var displacement_from_center: Vector2 = zombie_average_position - get_parent().position
-	if (displacement_from_center.length() > 25):
-		velocity += displacement_from_center * ATTRACTION_SPEED
-	
-	input_force.normalized()
-	velocity += input_force * displacement_from_center.length()
+		var displacement_from_center: Vector2 = zombie_average_position - get_parent().position
+		if (displacement_from_center.length() > 25):
+				velocity += displacement_from_center * ATTRACTION_SPEED
+		
+		velocity += input_force.normalized() * displacement_from_center.length()
 
-	for zombie: Node2D in zombies:
-		var clumping: Vector2 = zombie.position - get_parent().position
-		if clumping.length() < SEPARATION_MIN_DISTANCE:
-			velocity += (SEPARATION_MIN_DISTANCE - clumping.length()) * -1 * clumping.normalized() * SEPARATION_SPEED
+		for zombie: Node2D in zombies:
+			if zombie.get_instance_id() == get_instance_id():
+				continue		
+			var clumping: Vector2 = zombie.position - get_parent().position
+			if clumping.length() < SEPARATION_MIN_DISTANCE:
+				velocity += (SEPARATION_MIN_DISTANCE - clumping.length()) * -1 * clumping.normalized() * SEPARATION_SPEED
+	else:
+		velocity += input_force
 	
 	if velocity.length() < 5:
 		velocity = Vector2.ZERO

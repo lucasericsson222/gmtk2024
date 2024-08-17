@@ -103,6 +103,7 @@ size = Vector2(6, 15)
 size = Vector2(6, 15)
 
 [node name="Zombie" type="CharacterBody2D" groups=["zombie"]]
+collision_mask = 9
 script = ExtResource("1_r6vr2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -110,6 +111,7 @@ sprite_frames = SubResource("SpriteFrames_tsg1v")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-2, 0.5)
 shape = SubResource("RectangleShape2D_x1fal")
 
@@ -119,6 +121,7 @@ velocity = null
 speed = null
 
 [node name="ConversionComponent" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("4_dy245")]
+visible = false
 collision_mask = 4
 converted_scene = ExtResource("5_8uc6f")
 animated_sprite = NodePath("../AnimatedSprite2D")
