@@ -7,21 +7,38 @@ var speed = 200
 var max_speed: float = 75
 var position_fix_speed: float = 8 
 var syringe_laser_scene = preload("res://scenes/syringe_laser.tscn")
+var attacking_offset = 20
+var fire_range = 20
+var laser_length = 32
+var attack_position_dif: Vector2 = Vector2.ZERO
+var attack_decel_radius = 24
 
 var syringeIsFull = false 
 
 var target: Node2D = null
 
+func _draw() -> void:
+	# debug drawing
+	#if target != null:
+	#	draw_line(Vector2.ZERO, target.position - position, Color.WHITE, 1)
+	#if attack_position_dif != Vector2.ZERO:
+	#	draw_line(Vector2.ZERO, attack_position_dif, Color.RED, 1)
+	pass
+
+func _process(_delta: float) -> void:
+	queue_redraw()
+
 func _physics_process(_delta: float) -> void:
 	track_nearest_zombie()
 	if target == null:
-		pass
+		attack_position_dif = Vector2.ZERO
 	else:
 		var displacement = (target.position - position)
 		var facing = displacement.x < 0 # true if left
 		$AnimatedSprite2D.flip_h = facing
 
 		if state == TRACKING:
+			attack_position_dif = Vector2.ZERO
 			if displacement.length() > 6 * 16:
 				velocity += position_fix_speed * displacement.normalized()
 			if displacement.length() < 6 * 16:
@@ -33,22 +50,24 @@ func _physics_process(_delta: float) -> void:
 			# so it will attempt to stand 
 			var offset
 			if facing: #left
-				offset = Vector2(20, 0)
+				offset = Vector2(-attacking_offset, 0)
 			else:
-				offset = Vector2(-20, 0)
+				offset = Vector2(attacking_offset, 0)
+
+			attack_position_dif = (displacement - offset)
 			
-			velocity += position_fix_speed * (displacement - offset).normalized()
-			if velocity.length() > 0 and (displacement - offset).length() < 16:
+			velocity += position_fix_speed * 4 * attack_position_dif.normalized()
+			if velocity.length() > 0 and displacement.length() < attack_decel_radius:
 				velocity /= 1.5
 			
-			if (displacement-offset).length() < 64:
+			if displacement.length() < fire_range:
 				var laser_instance = syringe_laser_scene.instantiate()
 				laser_instance.is_flipped = facing
 				var laser_offset
 				if facing:
-					laser_offset = Vector2(-16, 0)
+					laser_offset = Vector2(-laser_length/2.0, 0) # sprite is laser_length long, centered, so half of laser length uncenters 
 				else:
-					laser_offset = Vector2(16, 0)
+					laser_offset = Vector2(laser_length/2.0, 0)
 				laser_instance.position = laser_offset
 				add_child(laser_instance)
 				state = TRACKING
@@ -81,11 +100,11 @@ func array_min(arr: Array[Node2D]) -> Node2D:
 	if arr.size() == 0:
 		return null
 	var minitem = arr[0]
-	var minvalue = arr[0].position - position
+	var minvalue = (arr[0].position - position).length()
 	for item in arr:
 		var curvalue = item.position - position
-		if curvalue < minvalue:
-			minvalue = curvalue
+		if curvalue.length() < minvalue:
+			minvalue = curvalue.length()
 			minitem = item
 	return minitem
 

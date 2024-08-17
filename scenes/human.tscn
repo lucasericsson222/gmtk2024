@@ -1,9 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://ceifm35mxfh23"]
+[gd_scene load_steps=19 format=3 uid="uid://dec5kppe387bb"]
 
 [ext_resource type="Script" path="res://scripts/human.gd" id="1_xa53d"]
 [ext_resource type="Texture2D" uid="uid://c0owr654pqgqm" path="res://assets/human_running.png" id="2_51nk0"]
 [ext_resource type="Texture2D" uid="uid://cbcy5yji7acqc" path="res://assets/human_walking.png" id="3_acpb3"]
-[ext_resource type="PackedScene" uid="uid://ctuptcbqgdqh0" path="res://scenes/conversion_component.tscn" id="3_xe0lx"]
+[ext_resource type="PackedScene" path="res://scenes/conversion_component.tscn" id="3_xe0lx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_otaoi"]
 size = Vector2(8, 13.5)
