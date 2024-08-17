@@ -1,11 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://c8ww8kehtsk8e"]
+[gd_scene load_steps=28 format=3 uid="uid://c8ww8kehtsk8e"]
 
 [ext_resource type="Script" path="res://scripts/zombie.gd" id="1_r6vr2"]
 [ext_resource type="Texture2D" uid="uid://t1qdtdos5b74" path="res://assets/zombie.png" id="2_6ba4t"]
 [ext_resource type="Texture2D" uid="uid://env2ms6k3o82" path="res://assets/zombie_falling.png" id="2_w3aiu"]
 [ext_resource type="Script" path="res://scripts/zombie_component.gd" id="3_mt8pv"]
 [ext_resource type="PackedScene" uid="uid://bduyg67h53yn2" path="res://scenes/conversion_component.tscn" id="4_dy245"]
-[ext_resource type="PackedScene" uid="uid://dec5kppe387bb" path="res://scenes/human.tscn" id="5_8uc6f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4d7mh"]
 atlas = ExtResource("2_w3aiu")
@@ -153,11 +152,13 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1fal"]
-size = Vector2(6, 15)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y4jnb"]
+radius = 4.0
+height = 14.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f03s3"]
-size = Vector2(6, 15)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ckssf"]
+radius = 4.5
+height = 14.5
 
 [node name="Zombie" type="CharacterBody2D" groups=["zombie"]]
 collision_mask = 8
@@ -168,9 +169,8 @@ sprite_frames = SubResource("SpriteFrames_tsg1v")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-2, 0.5)
-shape = SubResource("RectangleShape2D_x1fal")
+position = Vector2(-1, 1)
+shape = SubResource("CapsuleShape2D_y4jnb")
 
 [node name="ZombieComponent" type="Node" parent="."]
 script = ExtResource("3_mt8pv")
@@ -178,11 +178,12 @@ velocity = null
 speed = null
 
 [node name="ConversionComponent" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("4_dy245")]
-visible = false
 collision_mask = 4
-converted_scene = ExtResource("5_8uc6f")
+converted_scene_name = "res://scenes/human.tscn"
 animated_sprite = NodePath("../AnimatedSprite2D")
+immunity_timeout = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ConversionComponent"]
-position = Vector2(-2, 0.5)
-shape = SubResource("RectangleShape2D_f03s3")
+visible = false
+position = Vector2(-1, 1)
+shape = SubResource("CapsuleShape2D_ckssf")

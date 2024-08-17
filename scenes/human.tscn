@@ -6,8 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://cbcy5yji7acqc" path="res://assets/human_walking.png" id="3_acpb3"]
 [ext_resource type="PackedScene" uid="uid://bduyg67h53yn2" path="res://scenes/conversion_component.tscn" id="3_xe0lx"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_otaoi"]
-size = Vector2(8, 13.5)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b51tl"]
+radius = 4.0
+height = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8j2rp"]
 radius = 34.0
@@ -159,9 +160,8 @@ collision_mask = 10
 script = ExtResource("1_xa53d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(2, 1)
-shape = SubResource("RectangleShape2D_otaoi")
+position = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_b51tl")
 
 [node name="DetectionRange" type="Area2D" parent="."]
 collision_layer = 0

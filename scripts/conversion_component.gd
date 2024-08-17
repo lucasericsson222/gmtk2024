@@ -1,12 +1,14 @@
 extends Area2D
 
-@export var converted_scene = load("res://scenes/zombie.tscn")
+@export var converted_scene_name: String = "res://scenes/zombie.tscn" 
 
 @export var animated_sprite: AnimatedSprite2D
 @export var immunity_timeout = 1.0
 
 var dying = false
 var just_converted = true
+
+var blood_scene = preload("res://scenes/Blood.tscn")
 
 
 func _ready():
@@ -33,15 +35,19 @@ func _on_animated_sprite_2d_animation_looped() -> void:
 
 func convert_entity():
 	if dying == true:
-		var converted_instance = converted_scene.instantiate()
+		var converted_instance = load(converted_scene_name).instantiate()
 		converted_instance.position = get_parent().position
 		get_parent().get_parent().add_child(converted_instance)
 		get_parent().queue_free()
 
-func _on_body_or_area_entered(_body: Node2D) -> void:
+func _on_body_or_area_entered(body: Node2D) -> void:
 	if just_converted:
 		return
 	animated_sprite.play("death")
+	var blood_instance = blood_scene.instantiate()	
+	blood_instance.rotation = (body.position - position).angle()
+	get_parent().get_parent().add_child(blood_instance)
+	blood_instance.position = get_parent().position
 	get_node("CollisionShape2D").queue_free()
 	dying = true
 

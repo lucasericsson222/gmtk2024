@@ -41,4 +41,5 @@ physics_layer_0/collision_mask = 8
 sources/0 = SubResource("TileSetAtlasSource_2gdty")
 
 [node name="Tileset" type="TileMapLayer"]
+z_index = -5
 tile_set = SubResource("TileSet_jr4sw")

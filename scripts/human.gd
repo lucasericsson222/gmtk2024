@@ -18,12 +18,16 @@ func _ready():
 	_on_walk_timer_timeout()
 	pass
 
+var run_timer_freed = false
 
 func _physics_process(_delta: float) -> void:
 	if $AnimatedSprite2D.animation == "death":
 		dead = true
 		velocity = Vector2.ZERO
 		move_and_slide()
+		if !run_timer_freed:
+			$RunTimer.queue_free()
+			run_timer_freed = true
 		return
 	if not is_instance_valid(zombie):
 		zombie = null
