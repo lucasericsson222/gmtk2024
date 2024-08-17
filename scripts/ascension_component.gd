@@ -1,11 +1,24 @@
 extends Area2D
 
+@export var ascended_scene_name: String = "res://scenes/super_zombie.tscn" 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@export var required_count = 5
+var count = 1
+
+func _on_body_entered(body: Node2D) -> void:
+	count += 1
+	print(count)
+	if count >= required_count:
+		var zombies_to_ascend = get_overlapping_bodies()
+		var ascended_instance = load(ascended_scene_name).instantiate()
+		ascended_instance.position = get_parent().position
+		get_parent().get_parent().add_child(ascended_instance)
+		
+		for z in zombies_to_ascend:
+			z.queue_free()
+		get_parent().queue_free()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_body_exited(body: Node2D) -> void:
+	count -= 1
+	print(count)
