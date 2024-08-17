@@ -1,14 +1,47 @@
-[gd_scene load_steps=20 format=3 uid="uid://c8ww8kehtsk8e"]
+[gd_scene load_steps=29 format=3 uid="uid://c8ww8kehtsk8e"]
 
 [ext_resource type="Script" path="res://scripts/zombie.gd" id="1_r6vr2"]
 [ext_resource type="Texture2D" uid="uid://t1qdtdos5b74" path="res://assets/zombie.png" id="2_6ba4t"]
+[ext_resource type="Texture2D" uid="uid://env2ms6k3o82" path="res://assets/zombie_falling.png" id="2_w3aiu"]
 [ext_resource type="Script" path="res://scripts/zombie_component.gd" id="3_mt8pv"]
 [ext_resource type="PackedScene" uid="uid://bduyg67h53yn2" path="res://scenes/conversion_component.tscn" id="4_dy245"]
 [ext_resource type="PackedScene" uid="uid://dec5kppe387bb" path="res://scenes/human.tscn" id="5_8uc6f"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gp111"]
-atlas = ExtResource("2_6ba4t")
+[sub_resource type="AtlasTexture" id="AtlasTexture_4d7mh"]
+atlas = ExtResource("2_w3aiu")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ap6c3"]
+atlas = ExtResource("2_w3aiu")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tidwo"]
+atlas = ExtResource("2_w3aiu")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yttk"]
+atlas = ExtResource("2_w3aiu")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yekc"]
+atlas = ExtResource("2_w3aiu")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5l7y2"]
+atlas = ExtResource("2_w3aiu")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5est"]
+atlas = ExtResource("2_w3aiu")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4x3ti"]
+atlas = ExtResource("2_w3aiu")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epshy"]
+atlas = ExtResource("2_w3aiu")
+region = Rect2(32, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w0n7r"]
 atlas = ExtResource("2_6ba4t")
@@ -54,11 +87,35 @@ region = Rect2(16, 32, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gp111")
+"texture": SubResource("AtlasTexture_4d7mh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ap6c3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tidwo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yttk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yekc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5l7y2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5est")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4x3ti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epshy")
 }],
 "loop": false,
 "name": &"death",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
