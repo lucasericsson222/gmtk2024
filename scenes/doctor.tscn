@@ -50,7 +50,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a4hf1"]
-radius = 100.02
+radius = 211.038
 
 [node name="Doctor" type="CharacterBody2D"]
 collision_layer = 2
