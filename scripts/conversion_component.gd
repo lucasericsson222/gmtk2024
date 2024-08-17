@@ -49,7 +49,7 @@ func _on_body_or_area_entered(body: Node2D) -> void:
 	if has_bloody_conversions:
 		var blood_instance: CPUParticles2D = blood_scene.instantiate()	
 		blood_instance.color = blood_color
-		blood_instance.rotation = (body.position - position).angle()
+		
 		get_parent().get_parent().add_child(blood_instance)
 		blood_instance.position = get_parent().position
 	get_node("CollisionShape2D").queue_free()

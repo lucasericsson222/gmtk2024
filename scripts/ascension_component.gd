@@ -7,7 +7,7 @@ var count = 1
 
 func _on_body_entered(body: Node2D) -> void:
 	count += 1
-	print(count)
+	#print(count)
 	if count >= required_count:
 		var zombies_to_ascend = get_overlapping_bodies()
 		var ascended_instance = load(ascended_scene_name).instantiate()
@@ -21,4 +21,4 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_body_exited(body: Node2D) -> void:
 	count -= 1
-	print(count)
+	#print(count)

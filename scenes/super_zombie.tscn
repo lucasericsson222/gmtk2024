@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cwqdyykoh8loc"]
+[gd_scene load_steps=28 format=3 uid="uid://bpauryiic0fux"]
 
 [ext_resource type="Script" path="res://scripts/zombie.gd" id="1_ay83e"]
 [ext_resource type="Texture2D" uid="uid://env2ms6k3o82" path="res://assets/zombie_falling.png" id="2_jqi12"]
@@ -183,6 +183,7 @@ collision_mask = 4
 converted_scene_name = "res://scenes/human.tscn"
 animated_sprite = NodePath("../AnimatedSprite2D")
 immunity_timeout = 0.1
+has_bloody_conversions = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ConversionComponent"]
 position = Vector2(-1, 1)
