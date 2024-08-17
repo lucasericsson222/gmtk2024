@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://btthprxygasfu"
-path="res://.godot/imported/doctor.png-e2e8f568071be755942000fcba952567.ctex"
+path="res://.godot/imported/doctor_full.png-7036ae6057ab2c7ea6dacefcc0b5f793.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/doctor.png"
-dest_files=["res://.godot/imported/doctor.png-e2e8f568071be755942000fcba952567.ctex"]
+source_file="res://assets/doctor_full.png"
+dest_files=["res://.godot/imported/doctor_full.png-7036ae6057ab2c7ea6dacefcc0b5f793.ctex"]
 
 [params]
 

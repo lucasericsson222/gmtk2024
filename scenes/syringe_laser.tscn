@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2aht726a7ub1"]
+
+[ext_resource type="Script" path="res://scripts/syringe_laser.gd" id="1_pqf11"]
+[ext_resource type="Texture2D" uid="uid://dw86a83dadlws" path="res://assets/syringe_laser.png" id="2_dheri"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8j2oj"]
+atlas = ExtResource("2_dheri")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_maywx"]
+atlas = ExtResource("2_dheri")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0b35"]
+atlas = ExtResource("2_dheri")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohuao"]
+atlas = ExtResource("2_dheri")
+region = Rect2(32, 16, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t7jp0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8j2oj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_maywx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0b35")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohuao")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="SyringeLaser" type="Area2D"]
+script = ExtResource("1_pqf11")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_t7jp0")
+autoplay = "default"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-16, 0, -10, -5, 15, 0, -10, 6)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
