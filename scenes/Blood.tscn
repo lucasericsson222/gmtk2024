@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://clululsexs6hq"]
 
-[ext_resource type="Script" path="res://scenes/blood.gd" id="1_ktmkw"]
+[ext_resource type="Script" path="res://scripts/blood.gd" id="1_ktmkw"]
 
 [node name="Blood" type="CPUParticles2D"]
 z_index = -1

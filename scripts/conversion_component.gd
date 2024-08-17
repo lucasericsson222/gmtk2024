@@ -4,6 +4,8 @@ extends Area2D
 
 @export var animated_sprite: AnimatedSprite2D
 @export var immunity_timeout = 1.0
+@export var blood_color: Color
+@export var has_bloody_conversions = true
 
 var dying = false
 var just_converted = true
@@ -44,10 +46,12 @@ func _on_body_or_area_entered(body: Node2D) -> void:
 	if just_converted:
 		return
 	animated_sprite.play("death")
-	var blood_instance = blood_scene.instantiate()	
-	blood_instance.rotation = (body.position - position).angle()
-	get_parent().get_parent().add_child(blood_instance)
-	blood_instance.position = get_parent().position
+	if has_bloody_conversions:
+		var blood_instance: CPUParticles2D = blood_scene.instantiate()	
+		blood_instance.color = blood_color
+		blood_instance.rotation = body.velocity.angle()
+		get_parent().get_parent().add_child(blood_instance)
+		blood_instance.position = get_parent().position
 	get_node("CollisionShape2D").queue_free()
 	dying = true
 

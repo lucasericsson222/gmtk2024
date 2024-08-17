@@ -185,6 +185,7 @@ metadata/_edit_lock_ = true
 
 [node name="ConversionComponent" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("3_xe0lx")]
 animated_sprite = NodePath("../AnimatedSprite2D")
+blood_color = Color(0.831373, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ConversionComponent"]
 visible = false
