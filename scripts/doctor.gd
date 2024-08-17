@@ -30,7 +30,7 @@ func _physics_process(_delta: float) -> void:
 
 
 
-func _on_area_2d_body_exited(body:Node2D) -> void:
+func _on_area_2d_body_exited(_body:Node2D) -> void:
 	var other_zombies = $Area2D.get_overlapping_bodies()
 	if other_zombies.size() > 0:
 		target = other_zombies[0]
