@@ -194,9 +194,9 @@ metadata/_edit_lock_ = true
 
 [node name="RunTimer" type="Timer" parent="."]
 wait_time = 3.0
+one_shot = true
 
 [connection signal="body_entered" from="DetectionRange" to="." method="_on_detection_range_body_entered"]
 [connection signal="body_exited" from="DetectionRange" to="." method="_on_detection_range_body_exited"]
 [connection signal="timeout" from="WalkTimer" to="." method="_on_walk_timer_timeout"]
-[connection signal="human_killed" from="ConversionComponent" to="." method="_on_human_killed"]
 [connection signal="timeout" from="RunTimer" to="." method="_on_run_timer_timeout"]

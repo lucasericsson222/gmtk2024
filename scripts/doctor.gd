@@ -13,6 +13,7 @@ var attack_position_dif: Vector2 = Vector2.ZERO
 var attack_decel_radius = 24
 
 var syringeIsFull = false 
+var dead = false
 
 var target: Node2D = null
 
@@ -28,6 +29,12 @@ func _process(_delta: float) -> void:
 	queue_redraw()
 
 func _physics_process(_delta: float) -> void:
+	if $AnimatedSprite2D.animation == "death":
+		velocity = Vector2.ZERO
+		dead = true
+		move_and_slide()
+		return
+
 	track_nearest_zombie()
 	if target == null:
 		attack_position_dif = Vector2.ZERO
@@ -79,12 +86,12 @@ func _physics_process(_delta: float) -> void:
 
 	velocity = clamp(velocity.length(), 0, max_speed) * velocity.normalized()
 
-	if $AnimatedSprite2D.animation == "death":
-		velocity = Vector2.ZERO
 	
 	move_and_slide()
 
 func _on_syringe_recharge_timer_timeout() -> void:
+	if dead:
+		return
 	syringeIsFull = true
 	$AnimatedSprite2D.animation = "default"
 

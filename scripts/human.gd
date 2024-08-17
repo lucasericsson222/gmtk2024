@@ -20,6 +20,11 @@ func _ready():
 
 
 func _physics_process(_delta: float) -> void:
+	if $AnimatedSprite2D.animation == "death":
+		dead = true
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
 	if not is_instance_valid(zombie):
 		zombie = null
 		state_chase = false
@@ -27,8 +32,6 @@ func _physics_process(_delta: float) -> void:
 		new_direction = position - zombie.position + Vector2(randf_range(-0.3, 0.3), randf_range(-0.3, 0.3))
 		new_direction = new_direction.normalized()
 		direction = new_direction
-	elif dead:
-		direction = Vector2.ZERO
 	else:
 		direction = old_direction.lerp(new_direction, t)
 		if t < 1.0:
@@ -40,6 +43,8 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_walk_timer_timeout() -> void:
+	if dead:
+		return
 	old_direction = direction
 	new_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
 	t = 0.0
@@ -47,6 +52,8 @@ func _on_walk_timer_timeout() -> void:
 
 
 func _on_run_timer_timeout() -> void:
+	if dead:
+		return
 	$WalkTimer.wait_time = randf_range(1, 4)
 	$WalkTimer.start()
 	state_chase = false
@@ -56,6 +63,8 @@ func _on_run_timer_timeout() -> void:
 
 
 func _on_detection_range_body_entered(body: Node2D) -> void:
+	if dead:
+		return
 	zombie = body
 	$WalkTimer.stop()
 	state_chase = true
@@ -64,12 +73,7 @@ func _on_detection_range_body_entered(body: Node2D) -> void:
 
 
 func _on_detection_range_body_exited(_body: Node2D) -> void:
+	if dead:
+		return
 	$RunTimer.wait_time = 3.5 + randf_range(-1, 1)
 	$RunTimer.start()
-
-
-func _on_human_killed() -> void:
-	speed = 0.0
-	state_chase = false
-	dead = true
-	get_node("DetectionRange").queue_free()
