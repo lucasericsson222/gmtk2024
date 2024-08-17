@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bpauryiic0fux"]
+[gd_scene load_steps=28 format=3 uid="uid://cwqdyykoh8loc"]
 
 [ext_resource type="Script" path="res://scripts/zombie.gd" id="1_ay83e"]
 [ext_resource type="Texture2D" uid="uid://env2ms6k3o82" path="res://assets/zombie_falling.png" id="2_jqi12"]

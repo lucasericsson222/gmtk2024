@@ -3,7 +3,7 @@ extends Area2D
 @export var ascended_scene_name: String = "res://scenes/super_zombie.tscn" 
 
 @export var required_count = 5
-var count = 1
+var count = 0
 
 func _on_body_entered(body: Node2D) -> void:
 	count += 1
