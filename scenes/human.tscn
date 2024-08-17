@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dec5kppe387bb"]
+[gd_scene load_steps=13 format=3 uid="uid://ceifm35mxfh23"]
 
 [ext_resource type="Script" path="res://scripts/human.gd" id="1_xa53d"]
 [ext_resource type="Texture2D" uid="uid://c0owr654pqgqm" path="res://assets/human.png" id="2_51nk0"]
+[ext_resource type="PackedScene" uid="uid://ctuptcbqgdqh0" path="res://scenes/conversion_component.tscn" id="3_xe0lx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_otaoi"]
 size = Vector2(8, 13.5)
@@ -52,6 +53,9 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pfk08"]
+size = Vector2(10, 15)
+
 [node name="Human" type="CharacterBody2D"]
 position = Vector2(-2, -1)
 collision_layer = 2
@@ -59,15 +63,16 @@ collision_mask = 3
 script = ExtResource("1_xa53d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 1.75)
+position = Vector2(2, 1)
 shape = SubResource("RectangleShape2D_otaoi")
 
 [node name="DetectionRange" type="Area2D" parent="."]
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
-position = Vector2(1, 2)
+position = Vector2(2, 1)
 shape = SubResource("CircleShape2D_8j2rp")
+metadata/_edit_lock_ = true
 
 [node name="WalkTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -78,6 +83,15 @@ position = Vector2(2, 1)
 sprite_frames = SubResource("SpriteFrames_qs1yk")
 animation = &"run"
 autoplay = "run"
+frame_progress = 0.706598
+metadata/_edit_lock_ = true
+
+[node name="Area2D" parent="." instance=ExtResource("3_xe0lx")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2, 1)
+shape = SubResource("RectangleShape2D_pfk08")
+metadata/_edit_lock_ = true
 
 [connection signal="body_entered" from="DetectionRange" to="." method="_on_detection_range_body_entered"]
 [connection signal="body_exited" from="DetectionRange" to="." method="_on_detection_range_body_exited"]

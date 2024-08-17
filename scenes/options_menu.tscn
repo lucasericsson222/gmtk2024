@@ -23,7 +23,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 20
 
-[node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="Separator" type="Control" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 
