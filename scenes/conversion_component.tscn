@@ -1,9 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctuptcbqgdqh0"]
+[gd_scene load_steps=2 format=3 uid="uid://bduyg67h53yn2"]
 
 [ext_resource type="Script" path="res://scripts/conversion_component.gd" id="1_4htxu"]
 
-[node name="Area2D" type="Area2D"]
+[node name="ConversionComponent" type="Area2D"]
 collision_layer = 0
 script = ExtResource("1_4htxu")
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

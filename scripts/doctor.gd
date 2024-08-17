@@ -3,8 +3,8 @@ extends CharacterBody2D
 enum {RUNNING, TRACKING, ATTACKING}
 
 var state = RUNNING
-var speed = 200
-var max_speed: float = 75
+var speed = 100 
+var max_speed: float = 70
 var position_fix_speed: float = 8 
 var syringe_laser_scene = preload("res://scenes/syringe_laser.tscn")
 var attacking_offset = 20
@@ -87,7 +87,7 @@ func _on_syringe_recharge_timer_timeout() -> void:
 	$AnimatedSprite2D.animation = "default"
 
 func track_nearest_zombie() -> void:
-	var other_zombies = $Area2D.get_overlapping_bodies()
+	var other_zombies = $ZombieDetectionRange.get_overlapping_bodies()
 	if other_zombies.size() > 0:
 		state = TRACKING
 		# take the next closest body
@@ -107,15 +107,3 @@ func array_min(arr: Array[Node2D]) -> Node2D:
 			minvalue = curvalue.length()
 			minitem = item
 	return minitem
-
-
-func _on_area_2d_body_exited(_body: Node2D) -> void:
-	track_nearest_zombie()
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if target != null:
-		# if target is closer, don't switch targets
-		if target.position.distance_squared_to(position) < body.position.distance_squared_to(position):
-			return
-	target = body
-	state = TRACKING

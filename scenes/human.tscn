@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/human.gd" id="1_xa53d"]
 [ext_resource type="Texture2D" uid="uid://c0owr654pqgqm" path="res://assets/human_running.png" id="2_51nk0"]
 [ext_resource type="Texture2D" uid="uid://cbcy5yji7acqc" path="res://assets/human_walking.png" id="3_acpb3"]
-[ext_resource type="PackedScene" path="res://scenes/conversion_component.tscn" id="3_xe0lx"]
+[ext_resource type="PackedScene" uid="uid://bduyg67h53yn2" path="res://scenes/conversion_component.tscn" id="3_xe0lx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_otaoi"]
 size = Vector2(8, 13.5)
@@ -59,7 +59,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 1.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -116,6 +116,7 @@ shape = SubResource("RectangleShape2D_otaoi")
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+visible = false
 position = Vector2(2, 1)
 shape = SubResource("CircleShape2D_8j2rp")
 metadata/_edit_lock_ = true
@@ -129,12 +130,12 @@ position = Vector2(2, 1)
 sprite_frames = SubResource("SpriteFrames_qs1yk")
 animation = &"walk"
 autoplay = "walk"
-frame_progress = 0.229487
 metadata/_edit_lock_ = true
 
-[node name="Area2D" parent="." instance=ExtResource("3_xe0lx")]
+[node name="ConversionComponent" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("3_xe0lx")]
+animated_sprite = NodePath("../AnimatedSprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConversionComponent"]
 position = Vector2(2, 1)
 shape = SubResource("RectangleShape2D_pfk08")
 metadata/_edit_lock_ = true
@@ -145,6 +146,5 @@ wait_time = 3.0
 [connection signal="body_entered" from="DetectionRange" to="." method="_on_detection_range_body_entered"]
 [connection signal="body_exited" from="DetectionRange" to="." method="_on_detection_range_body_exited"]
 [connection signal="timeout" from="WalkTimer" to="." method="_on_walk_timer_timeout"]
-[connection signal="animation_finished" from="AnimatedSprite2D" to="Area2D" method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="human_killed" from="Area2D" to="." method="_on_human_killed"]
+[connection signal="human_killed" from="ConversionComponent" to="." method="_on_human_killed"]
 [connection signal="timeout" from="RunTimer" to="." method="_on_run_timer_timeout"]

@@ -2,7 +2,7 @@ extends Node
 
 @export var velocity: Vector2 = Vector2.ZERO
 @export var speed: float = 50 
-var max_speed: float = 75
+var max_speed: float = 90
 const ATTRACTION_SPEED: float = 0.025
 const SEPARATION_SPEED: float = 50
 const SEPARATION_MIN_DISTANCE: float = 12.25

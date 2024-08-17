@@ -40,6 +40,8 @@ animations = [{
 }]
 
 [node name="SyringeLaser" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_pqf11")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -49,4 +51,5 @@ autoplay = "default"
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-16, 0, -10, -5, 15, 0, -10, 6)
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

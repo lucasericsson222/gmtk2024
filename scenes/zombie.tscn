@@ -1,8 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8ww8kehtsk8e"]
+[gd_scene load_steps=20 format=3 uid="uid://c8ww8kehtsk8e"]
 
 [ext_resource type="Script" path="res://scripts/zombie.gd" id="1_r6vr2"]
 [ext_resource type="Texture2D" uid="uid://t1qdtdos5b74" path="res://assets/zombie.png" id="2_6ba4t"]
 [ext_resource type="Script" path="res://scripts/zombie_component.gd" id="3_mt8pv"]
+[ext_resource type="PackedScene" uid="uid://bduyg67h53yn2" path="res://scenes/conversion_component.tscn" id="4_dy245"]
+[ext_resource type="PackedScene" uid="uid://dec5kppe387bb" path="res://scenes/human.tscn" id="5_8uc6f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gp111"]
+atlas = ExtResource("2_6ba4t")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w0n7r"]
 atlas = ExtResource("2_6ba4t")
@@ -48,6 +54,14 @@ region = Rect2(16, 32, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_gp111")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_w0n7r")
 }, {
 "duration": 1.0,
@@ -85,13 +99,15 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x1fal"]
 size = Vector2(6, 15)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f03s3"]
+size = Vector2(6, 15)
+
 [node name="Zombie" type="CharacterBody2D" groups=["zombie"]]
 script = ExtResource("1_r6vr2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tsg1v")
 autoplay = "default"
-frame_progress = 0.943895
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 0.5)
@@ -101,3 +117,13 @@ shape = SubResource("RectangleShape2D_x1fal")
 script = ExtResource("3_mt8pv")
 velocity = null
 speed = null
+
+[node name="ConversionComponent" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("4_dy245")]
+collision_layer = 4
+collision_mask = 4
+converted_scene = ExtResource("5_8uc6f")
+animated_sprite = NodePath("../AnimatedSprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConversionComponent"]
+position = Vector2(-2, 0.5)
+shape = SubResource("RectangleShape2D_f03s3")

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-const WALKING_SPEED = 60.0
-const RUNNING_SPEED = 20.0
+const WALKING_SPEED = 40.0
+const RUNNING_SPEED = 60.0
 
 @onready var animated_sprite = $AnimatedSprite2D
 var direction = Vector2(randf_range(-1, 1), randf_range(-1, 1))
@@ -20,6 +20,9 @@ func _ready():
 
 
 func _physics_process(_delta: float) -> void:
+	if not is_instance_valid(zombie):
+		zombie = null
+		state_chase = false
 	if state_chase:
 		new_direction = position - zombie.position + Vector2(randf_range(-0.3, 0.3), randf_range(-0.3, 0.3))
 		new_direction = new_direction.normalized()

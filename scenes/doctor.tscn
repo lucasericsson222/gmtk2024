@@ -1,11 +1,19 @@
-[gd_scene load_steps=17 format=3 uid="uid://cg2s7hhb4i8cu"]
+[gd_scene load_steps=20 format=3 uid="uid://cg2s7hhb4i8cu"]
 
 [ext_resource type="Script" path="res://scripts/doctor.gd" id="1_iatac"]
 [ext_resource type="Texture2D" uid="uid://btthprxygasfu" path="res://assets/doctor_full.png" id="2_7xw8w"]
+[ext_resource type="PackedScene" uid="uid://bduyg67h53yn2" path="res://scenes/conversion_component.tscn" id="2_ct4ja"]
 [ext_resource type="Texture2D" uid="uid://dcpjulxx3tfgo" path="res://assets/doctor_empty.png" id="3_w2lmm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ki5bx"]
+size = Vector2(9, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hb2hw"]
 size = Vector2(7, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puqvn"]
+atlas = ExtResource("3_w2lmm")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_esc2k"]
 atlas = ExtResource("2_7xw8w")
@@ -51,6 +59,14 @@ region = Rect2(16, 16, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_puqvn")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_esc2k")
 }, {
 "duration": 1.0,
@@ -87,7 +103,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"empty",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a4hf1"]
@@ -95,8 +111,15 @@ radius = 211.038
 
 [node name="Doctor" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 2
 script = ExtResource("1_iatac")
+
+[node name="ConversionComponent" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("2_ct4ja")]
+animated_sprite = NodePath("../AnimatedSprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConversionComponent"]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_ki5bx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
@@ -107,9 +130,11 @@ sprite_frames = SubResource("SpriteFrames_ga5gs")
 animation = &"empty"
 autoplay = "empty"
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="ZombieDetectionRange" type="Area2D" parent="."]
+collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZombieDetectionRange"]
+visible = false
 shape = SubResource("CircleShape2D_a4hf1")
 
 [node name="SyringeRechargeTimer" type="Timer" parent="."]
@@ -117,6 +142,4 @@ wait_time = 4.0
 one_shot = true
 autostart = true
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="SyringeRechargeTimer" to="." method="_on_syringe_recharge_timer_timeout"]
