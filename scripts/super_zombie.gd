@@ -3,7 +3,6 @@ extends CharacterBody2D
 @onready var zombie_component = $ZombieComponent
 enum {NORMAL, ASCENDING, DYING}
 var state = NORMAL
-var max_id = 0
 
 signal ascend_alert
 
@@ -19,10 +18,3 @@ func _physics_process(_delta: float) -> void:
 	if state == ASCENDING:
 		return
 	move_and_slide()
-
-func ascend():
-	state = ASCENDING
-	emit_signal("ascend_alert")
-
-func cancel_ascend():
-	state = NORMAL

@@ -1,6 +1,6 @@
-[gd_scene load_steps=28 format=3 uid="uid://cwqdyykoh8loc"]
+[gd_scene load_steps=28 format=3 uid="uid://bpauryiic0fux"]
 
-[ext_resource type="Script" path="res://scripts/zombie.gd" id="1_ay83e"]
+[ext_resource type="Script" path="res://scripts/super_zombie.gd" id="1_ubvri"]
 [ext_resource type="Texture2D" uid="uid://env2ms6k3o82" path="res://assets/zombie_falling.png" id="2_jqi12"]
 [ext_resource type="Texture2D" uid="uid://t1qdtdos5b74" path="res://assets/zombie.png" id="3_i7jqc"]
 [ext_resource type="Script" path="res://scripts/zombie_component.gd" id="4_2ukjq"]
@@ -162,7 +162,7 @@ height = 14.5
 
 [node name="SuperZombie" type="CharacterBody2D" groups=["zombie"]]
 collision_mask = 8
-script = ExtResource("1_ay83e")
+script = ExtResource("1_ubvri")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -175,8 +175,6 @@ shape = SubResource("CapsuleShape2D_y4jnb")
 
 [node name="ZombieComponent" type="Node" parent="."]
 script = ExtResource("4_2ukjq")
-velocity = null
-speed = null
 
 [node name="ConversionComponent" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("5_kmqkf")]
 collision_mask = 4

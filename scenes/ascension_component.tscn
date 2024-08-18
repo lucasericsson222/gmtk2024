@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhvnh6o0coqm0"]
+[gd_scene load_steps=2 format=3 uid="uid://cg2anyutreuc3"]
 
 [ext_resource type="Script" path="res://scripts/ascension_component.gd" id="1_oiu3d"]
 
 [node name="AscensionComponent" type="Area2D"]
+collision_layer = 0
 script = ExtResource("1_oiu3d")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ddxqu1sgebj4h" path="res://assets/zombie_healing.png" id="2_dwtkv"]
 [ext_resource type="Script" path="res://scripts/zombie_component.gd" id="3_mt8pv"]
 [ext_resource type="PackedScene" uid="uid://bduyg67h53yn2" path="res://scenes/conversion_component.tscn" id="4_dy245"]
-[ext_resource type="PackedScene" uid="uid://dhvnh6o0coqm0" path="res://scenes/ascension_component.tscn" id="7_46xki"]
+[ext_resource type="PackedScene" uid="uid://cg2anyutreuc3" path="res://scenes/ascension_component.tscn" id="7_46xki"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ivev"]
 atlas = ExtResource("2_dwtkv")
@@ -202,8 +202,6 @@ shape = SubResource("CapsuleShape2D_y4jnb")
 
 [node name="ZombieComponent" type="Node" parent="."]
 script = ExtResource("3_mt8pv")
-velocity = null
-speed = null
 
 [node name="ConversionComponent" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("4_dy245")]
 collision_mask = 4
@@ -217,8 +215,8 @@ visible = false
 position = Vector2(-1, 1)
 shape = SubResource("CapsuleShape2D_ckssf")
 
-[node name="AscensionComponent" parent="." instance=ExtResource("7_46xki")]
-collision_layer = 0
+[node name="AscensionComponent" parent="." node_paths=PackedStringArray("zombie_root_node") instance=ExtResource("7_46xki")]
+zombie_root_node = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AscensionComponent"]
 visible = false
