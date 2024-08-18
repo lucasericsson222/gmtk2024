@@ -126,7 +126,6 @@ script = ExtResource("1_ubvri")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_tsg1v")
-animation = &"death"
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -153,3 +152,8 @@ show_behind_parent = true
 position = Vector2(-5.96046e-08, 7)
 scale = Vector2(1.32231, 1.41312)
 texture = ExtResource("6_jm7l6")
+
+[node name="ThrowTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]

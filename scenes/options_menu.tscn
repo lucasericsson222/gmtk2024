@@ -35,9 +35,8 @@ horizontal_alignment = 1
 
 [node name="Volume" type="HSlider" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-min_value = -80.0
+min_value = -20.0
 max_value = 0.0
-value = -40.0
 
 [node name="Controls" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

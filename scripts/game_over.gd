@@ -1,5 +1,10 @@
 extends Control
 
+
+func _ready() -> void:
+	AudioManager.play_song(AudioManager.Songs.GAME_OVER)
+
+
 func _on_main_menu_pressed() -> void:
 	AudioManager.play_sfx(AudioManager.SoundEffects.MENU_BUTTON)
 	Engine.time_scale = 1

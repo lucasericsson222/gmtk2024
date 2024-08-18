@@ -16,6 +16,7 @@ var dead = false
 func _ready():
 	speed = WALKING_SPEED
 	_on_walk_timer_timeout()
+	motion_mode = MOTION_MODE_FLOATING
 	pass
 
 var run_timer_freed = false
@@ -32,6 +33,7 @@ func _physics_process(_delta: float) -> void:
 	if not is_instance_valid(zombie):
 		zombie = null
 		state_chase = false
+	
 	if state_chase:
 		new_direction = position - zombie.position + Vector2(randf_range(-0.3, 0.3), randf_range(-0.3, 0.3))
 		new_direction = new_direction.normalized()
@@ -81,3 +83,9 @@ func _on_detection_range_body_exited(_body: Node2D) -> void:
 		return
 	$RunTimer.wait_time = 3.5 + randf_range(-1, 1)
 	$RunTimer.start()
+
+
+func _on_wall_detection_range_body_entered(body: Node2D) -> void:
+	old_direction = direction
+	new_direction = position - body.position + Vector2(randf_range(-0.5, 0.5), randf_range(-0.5, 0.5))
+	new_direction = new_direction.normalized()

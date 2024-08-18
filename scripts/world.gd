@@ -4,6 +4,10 @@ var paused = false
 @onready var pause_menu: Control = $Camera/PauseMenu
 
 
+func _ready() -> void:
+	AudioManager.play_song(AudioManager.Songs.MAIN)
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
