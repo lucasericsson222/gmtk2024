@@ -4,8 +4,6 @@ extends CharacterBody2D
 enum {NORMAL, ASCENDING, DYING}
 var state = NORMAL
 
-signal ascend_alert
-
 func _physics_process(_delta: float) -> void:
 	# Add the gravity.
 

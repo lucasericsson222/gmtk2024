@@ -178,10 +178,10 @@ script = ExtResource("4_2ukjq")
 
 [node name="ConversionComponent" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("5_kmqkf")]
 collision_mask = 4
-converted_scene_name = "res://scenes/human.tscn"
 animated_sprite = NodePath("../AnimatedSprite2D")
 immunity_timeout = 0.1
 has_bloody_conversions = false
+number_of_conversions = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ConversionComponent"]
 position = Vector2(-1, 1)

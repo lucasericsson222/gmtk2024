@@ -37,7 +37,7 @@ func _on_ascend(zombies: Array[Node2D]):
 	
 	super_zombie_instance.position = avg_position
 		
-	zombie_root_node.get_parent().add_child(super_zombie_instance)
+	zombie_root_node.get_parent().call_deferred("add_child", super_zombie_instance)
 	
 	count = 0 
 	for current_zombie in zombies:

@@ -6,6 +6,8 @@ extends Area2D
 @export var immunity_timeout = 1.0
 @export var blood_color: Color
 @export var has_bloody_conversions = true
+@export var number_of_conversions: float = 1
+var spawn_offset_distance = 5
 
 var dying = false
 var just_converted = true
@@ -37,9 +39,13 @@ func _on_animated_sprite_2d_animation_looped() -> void:
 
 func convert_entity():
 	if dying == true:
-		var converted_instance = load(converted_scene_name).instantiate()
-		converted_instance.position = get_parent().position
-		get_parent().get_parent().add_child(converted_instance)
+		var converted_scene: PackedScene = load(converted_scene_name)
+		var center_position = get_parent().position
+		for i in range(0, number_of_conversions):
+			var offset = Vector2(1, 0).rotated(i * 360 / number_of_conversions) * spawn_offset_distance
+			var converted_instance = converted_scene.instantiate()
+			converted_instance.position = center_position + offset
+			get_parent().get_parent().add_child(converted_instance)
 		get_parent().queue_free()
 
 func _on_body_or_area_entered(_body: Node2D) -> void:
