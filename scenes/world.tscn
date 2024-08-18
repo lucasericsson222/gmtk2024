@@ -1,13 +1,31 @@
-[gd_scene load_steps=7 format=4 uid="uid://hvtbqk1dupo3"]
+[gd_scene load_steps=9 format=4 uid="uid://hvtbqk1dupo3"]
 
 [ext_resource type="PackedScene" uid="uid://ddeaamttq2dme" path="res://scenes/Tileset.tscn" id="1_ksctk"]
 [ext_resource type="PackedScene" uid="uid://c8ww8kehtsk8e" path="res://scenes/zombie.tscn" id="1_orncy"]
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_ou587"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="1_prdg6"]
 [ext_resource type="PackedScene" uid="uid://dec5kppe387bb" path="res://scenes/human.tscn" id="2_k3rs3"]
+[ext_resource type="PackedScene" uid="uid://b5aojrrsh38gw" path="res://scenes/pause_menu.tscn" id="3_ce2in"]
 [ext_resource type="PackedScene" uid="uid://cg2s7hhb4i8cu" path="res://scenes/doctor.tscn" id="5_pa1nn"]
 [ext_resource type="PackedScene" uid="uid://cfh2kb2jt70x2" path="res://scenes/bed.tscn" id="6_o6lhs"]
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_ou587")
+
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+script = ExtResource("1_prdg6")
+
+[node name="PauseMenu" parent="Camera" instance=ExtResource("3_ce2in")]
+visible = false
+z_index = 10
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.333, 0.333)
 
 [node name="Tileset" parent="." instance=ExtResource("1_ksctk")]
 z_index = 0
@@ -29,11 +47,6 @@ position = Vector2(437, 254)
 
 [node name="Human4" parent="." instance=ExtResource("2_k3rs3")]
 position = Vector2(139, 292)
-
-[node name="Camera" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
-position_smoothing_enabled = true
-script = ExtResource("1_prdg6")
 
 [node name="Human6" parent="." instance=ExtResource("2_k3rs3")]
 position = Vector2(447, 292)
