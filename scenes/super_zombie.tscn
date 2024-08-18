@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://bpauryiic0fux"]
+[gd_scene load_steps=36 format=3 uid="uid://bpauryiic0fux"]
 
 [ext_resource type="Script" path="res://scripts/super_zombie.gd" id="1_ubvri"]
 [ext_resource type="Texture2D" uid="uid://cm2qhm8bh3bdn" path="res://assets/super_zombie_fall.png" id="2_hoyym"]
 [ext_resource type="Texture2D" uid="uid://c8loakkljv1uu" path="res://assets/super_zombie_walk.png" id="3_f48hn"]
 [ext_resource type="Script" path="res://scripts/zombie_component.gd" id="4_2ukjq"]
+[ext_resource type="Texture2D" uid="uid://ppehqg4hbboo" path="res://assets/super_zombie_throw.png" id="4_e0yyy"]
 [ext_resource type="PackedScene" uid="uid://bduyg67h53yn2" path="res://scenes/conversion_component.tscn" id="5_kmqkf"]
 [ext_resource type="Texture2D" uid="uid://bom8l8870oukw" path="res://assets/entity_shadow.png" id="6_jm7l6"]
 
@@ -59,6 +60,54 @@ region = Rect2(0, 32, 32, 32)
 atlas = ExtResource("3_f48hn")
 region = Rect2(32, 32, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2gop"]
+atlas = ExtResource("4_e0yyy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8k2a"]
+atlas = ExtResource("4_e0yyy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojapg"]
+atlas = ExtResource("4_e0yyy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okwe7"]
+atlas = ExtResource("4_e0yyy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4y3h"]
+atlas = ExtResource("4_e0yyy")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdx23"]
+atlas = ExtResource("4_e0yyy")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2urhl"]
+atlas = ExtResource("4_e0yyy")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wcp4"]
+atlas = ExtResource("4_e0yyy")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bsr5"]
+atlas = ExtResource("4_e0yyy")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82e53"]
+atlas = ExtResource("4_e0yyy")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0fg6"]
+atlas = ExtResource("4_e0yyy")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ob5g"]
+atlas = ExtResource("4_e0yyy")
+region = Rect2(96, 64, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_tsg1v"]
 animations = [{
 "frames": [{
@@ -109,6 +158,47 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2gop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8k2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojapg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okwe7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4y3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdx23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2urhl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wcp4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bsr5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82e53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0fg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ob5g")
+}],
+"loop": false,
+"name": &"throw",
+"speed": 30.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y4jnb"]
@@ -126,7 +216,10 @@ script = ExtResource("1_ubvri")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_tsg1v")
+animation = &"throw"
 autoplay = "default"
+frame = 11
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -156,4 +249,5 @@ texture = ExtResource("6_jm7l6")
 [node name="ThrowTimer" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]
