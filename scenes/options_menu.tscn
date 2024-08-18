@@ -39,6 +39,12 @@ min_value = -80.0
 max_value = 0.0
 value = -40.0
 
+[node name="Controls" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_qssc5")
+theme_override_font_sizes/font_size = 48
+text = "Controls"
+
 [node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
@@ -48,4 +54,5 @@ text = "Back
 "
 
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

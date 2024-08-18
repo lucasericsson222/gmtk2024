@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cp8c2cb4h268c"]
+[gd_scene load_steps=3 format=3 uid="uid://7kr054qgsrm6"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_q0dbo"]
-[ext_resource type="SystemFont" path="res://assets/menu_font.tres" id="2_lvl41"]
+[ext_resource type="SystemFont" uid="uid://dwbh23465p0o5" path="res://assets/menu_font.tres" id="2_lvl41"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3

@@ -14,8 +14,8 @@ script = ExtResource("1_3dvkx")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = -999.0
-offset_top = -523.0
+offset_left = -1137.0
+offset_top = -718.0
 offset_right = 1155.0
 offset_bottom = 720.0
 color = Color(0, 0, 0, 1)

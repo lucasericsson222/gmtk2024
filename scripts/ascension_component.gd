@@ -5,8 +5,6 @@ extends Area2D
 @export var required_count = 5
 var count = 0
 
-func _ready():
-	zombie_root_node.connect("ascend_alert", _on_ascend)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("ascend"):
