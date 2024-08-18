@@ -5,6 +5,8 @@ enum {NORMAL, ASCENDING, DYING}
 var state = NORMAL
 var max_id = 0
 
+var can_ascend = false
+
 func _physics_process(_delta: float) -> void:
 	# Add the gravity.
 
@@ -23,3 +25,6 @@ func ascend():
 
 func cancel_ascend():
 	state = NORMAL
+
+func _on_ascension_timer_timeout() -> void:
+	can_ascend = true
