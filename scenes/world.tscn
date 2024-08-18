@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://hvtbqk1dupo3"]
+[gd_scene load_steps=10 format=4 uid="uid://hvtbqk1dupo3"]
 
 [ext_resource type="PackedScene" uid="uid://ddeaamttq2dme" path="res://scenes/Tileset.tscn" id="1_ksctk"]
 [ext_resource type="PackedScene" uid="uid://c8ww8kehtsk8e" path="res://scenes/zombie.tscn" id="1_orncy"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b5aojrrsh38gw" path="res://scenes/pause_menu.tscn" id="3_ce2in"]
 [ext_resource type="PackedScene" uid="uid://cg2s7hhb4i8cu" path="res://scenes/doctor.tscn" id="5_pa1nn"]
 [ext_resource type="PackedScene" uid="uid://cfh2kb2jt70x2" path="res://scenes/bed.tscn" id="6_o6lhs"]
+[ext_resource type="PackedScene" uid="uid://bpccr7whmw464" path="res://scenes/cheese.tscn" id="9_ytvhw"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_ou587")
@@ -107,3 +108,6 @@ position = Vector2(74, 61)
 
 [node name="Bed" parent="." instance=ExtResource("6_o6lhs")]
 position = Vector2(175, 80)
+
+[node name="Cheese" parent="." instance=ExtResource("9_ytvhw")]
+position = Vector2(437, 226)
