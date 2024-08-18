@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfh2kb2jt70x2"]
+[gd_scene load_steps=6 format=3 uid="uid://cfh2kb2jt70x2"]
 
 [ext_resource type="Script" path="res://scripts/bed.gd" id="1_r4h3s"]
 [ext_resource type="Texture2D" uid="uid://casx2nhdsfswt" path="res://assets/bed.png" id="1_s47sg"]
+[ext_resource type="Texture2D" uid="uid://bom8l8870oukw" path="res://assets/entity_shadow.png" id="3_mb3cw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bh45x"]
 radius = 2.0
@@ -19,6 +20,7 @@ linear_damp = 2.0
 script = ExtResource("1_r4h3s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
 texture = ExtResource("1_s47sg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -32,3 +34,9 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_bawo1")
+
+[node name="EntityShadow" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(0, -3)
+scale = Vector2(1.1742, 1.16506)
+texture = ExtResource("3_mb3cw")

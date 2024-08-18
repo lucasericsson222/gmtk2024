@@ -1,10 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://cg2s7hhb4i8cu"]
+[gd_scene load_steps=30 format=3 uid="uid://cg2s7hhb4i8cu"]
 
 [ext_resource type="Script" path="res://scripts/doctor.gd" id="1_iatac"]
 [ext_resource type="Texture2D" uid="uid://btthprxygasfu" path="res://assets/doctor_full.png" id="2_7xw8w"]
 [ext_resource type="PackedScene" uid="uid://bduyg67h53yn2" path="res://scenes/conversion_component.tscn" id="2_ct4ja"]
 [ext_resource type="Texture2D" uid="uid://g114d4p52h3v" path="res://assets/doctor_falling.png" id="3_4jcjl"]
 [ext_resource type="Texture2D" uid="uid://dcpjulxx3tfgo" path="res://assets/doctor_empty.png" id="3_w2lmm"]
+[ext_resource type="Texture2D" uid="uid://bom8l8870oukw" path="res://assets/entity_shadow.png" id="6_ku14f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ki5bx"]
 size = Vector2(9, 14)
@@ -201,5 +202,11 @@ shape = SubResource("CircleShape2D_a4hf1")
 wait_time = 4.0
 one_shot = true
 autostart = true
+
+[node name="EntityShadow" type="Sprite2D" parent="."]
+show_behind_parent = true
+y_sort_enabled = true
+position = Vector2(0, 2)
+texture = ExtResource("6_ku14f")
 
 [connection signal="timeout" from="SyringeRechargeTimer" to="." method="_on_syringe_recharge_timer_timeout"]
