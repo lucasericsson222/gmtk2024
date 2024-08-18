@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhwhd3dd1ngf"]
+
+[ext_resource type="Texture2D" uid="uid://crm2fabmb53a8" path="res://assets/blue_cross.png" id="1_jpllv"]
+
+[node name="BlueCross" type="Sprite2D"]
+texture = ExtResource("1_jpllv")

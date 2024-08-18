@@ -13,7 +13,7 @@ var dying = false
 var just_converted = true
 
 var blood_scene = preload("res://scenes/Blood.tscn")
-
+var blue_cross = preload("res://scenes/blue_cross.tscn")
 
 func _ready():
 	animated_sprite.connect("animation_finished", _on_animated_sprite_2d_animation_finished)
@@ -24,9 +24,16 @@ func _ready():
 	timer.one_shot = true
 	timer.start()
 	timer.connect("timeout", _on_timer_timeout)
+	
+	if converted_scene_name == "res://scenes/zombie.tscn":
+		var blue_cross_instance = blue_cross.instantiate()
+		blue_cross_instance.position = Vector2(3, -10)
+		add_child(blue_cross_instance)
 
 func _on_timer_timeout():
 	just_converted = false
+	if converted_scene_name == "res://scenes/zombie.tscn":
+		$BlueCross.queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
 	_on_body_or_area_entered(body)
