@@ -7,6 +7,8 @@ const ATTRACTION_SPEED: float = 0.025
 const SEPARATION_SPEED: float = 50
 const SEPARATION_MIN_DISTANCE: float = 12.25
 const SPREAD_MULTIPLIER: float = 5
+const SPREAD_SPEED = 100
+const CLUMP_SPEED = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -49,7 +51,9 @@ func _physics_process(_delta: float) -> void:
 		velocity += input_force.normalized() * displacement_from_center.length()
 		
 		if Input.is_action_pressed("spread"):
-			velocity -= displacement_from_center * ATTRACTION_SPEED
+			velocity -= displacement_from_center.normalized() * SPREAD_SPEED
+		if Input.is_action_pressed("clump"):
+			velocity += displacement_from_center.normalized() * CLUMP_SPEED
 
 		for zombie: Node2D in zombies:
 			if zombie.get_instance_id() == get_instance_id():

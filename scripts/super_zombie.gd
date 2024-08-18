@@ -39,11 +39,12 @@ func _physics_process(_delta: float) -> void:
 				target = closest
 		else:
 			velocity = zombie_component.max_speed * (target.position - position).normalized()
-		var dist = (target.position - position).length()
-		if dist < grab_for_throw_dist:
-			target.be_thrown((get_global_mouse_position() - position).angle())
-			state = NORMAL
-			target = null
+		
+			var dist = (target.position - position).length()
+			if dist < grab_for_throw_dist:
+				target.be_thrown((get_global_mouse_position() - position).angle())
+				state = NORMAL
+				target = null
 			
 	if $AnimatedSprite2D.animation == "death":
 		velocity = Vector2.ZERO

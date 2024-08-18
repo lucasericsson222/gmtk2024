@@ -27,6 +27,12 @@ func _physics_process(delta: float) -> void:
 			z_velocity = 0
 			state = NORMAL
 			$AnimatedSprite2D.animation = "default"
+			var collision_shape = $ConversionComponent/CollisionShape2D
+			if collision_shape != null:
+				collision_shape.disabled = false
+			set_collision_layer_value(1, true)
+
+
 		$AnimatedSprite2D.position.y = -z_pos
 
 	$AnimatedSprite2D.flip_h = velocity.x < 0
@@ -40,6 +46,10 @@ func be_thrown(dir: float):
 	velocity = thrown_speed * Vector2.RIGHT.rotated(dir)
 	$AnimatedSprite2D.animation = "thrown"
 	z_velocity = z_throw_velocity
+	var collision_shape = $ConversionComponent/CollisionShape2D
+	if collision_shape != null:
+		collision_shape.disabled = true
+	set_collision_layer_value(1, false)
 
 func ascend():
 	state = ASCENDING
