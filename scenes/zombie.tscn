@@ -1,9 +1,10 @@
-[gd_scene load_steps=34 format=3 uid="uid://c8ww8kehtsk8e"]
+[gd_scene load_steps=36 format=3 uid="uid://c8ww8kehtsk8e"]
 
 [ext_resource type="Script" path="res://scripts/zombie.gd" id="1_r6vr2"]
 [ext_resource type="Texture2D" uid="uid://t1qdtdos5b74" path="res://assets/zombie.png" id="2_6ba4t"]
 [ext_resource type="Texture2D" uid="uid://ddxqu1sgebj4h" path="res://assets/zombie_healing.png" id="2_dwtkv"]
 [ext_resource type="Script" path="res://scripts/zombie_component.gd" id="3_mt8pv"]
+[ext_resource type="Texture2D" uid="uid://env2ms6k3o82" path="res://assets/zombie_falling.png" id="4_268ry"]
 [ext_resource type="PackedScene" uid="uid://bduyg67h53yn2" path="res://scenes/conversion_component.tscn" id="4_dy245"]
 [ext_resource type="PackedScene" uid="uid://cg2anyutreuc3" path="res://scenes/ascension_component.tscn" id="7_46xki"]
 [ext_resource type="Texture2D" uid="uid://bom8l8870oukw" path="res://assets/entity_shadow.png" id="7_t40xl"]
@@ -96,6 +97,10 @@ region = Rect2(0, 32, 16, 16)
 atlas = ExtResource("2_6ba4t")
 region = Rect2(16, 32, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hl5t7"]
+atlas = ExtResource("4_268ry")
+region = Rect2(16, 32, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_tsg1v"]
 animations = [{
 "frames": [{
@@ -173,6 +178,14 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hl5t7")
+}],
+"loop": true,
+"name": &"thrown",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y4jnb"]
@@ -186,17 +199,15 @@ height = 14.5
 [sub_resource type="CircleShape2D" id="CircleShape2D_asi6f"]
 radius = 22.0
 
-[node name="Zombie" type="CharacterBody2D" groups=["zombie"]]
+[node name="Zombie" type="CharacterBody2D" groups=["throwable_zombie", "zombie"]]
 y_sort_enabled = true
 collision_mask = 8
 script = ExtResource("1_r6vr2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tsg1v")
-animation = &"death"
+animation = &"thrown"
 autoplay = "default"
-frame = 11
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 1)
