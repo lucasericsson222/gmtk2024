@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://7kr054qgsrm6"]
+[gd_scene load_steps=4 format=3 uid="uid://7kr054qgsrm6"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_q0dbo"]
 [ext_resource type="SystemFont" uid="uid://dwbh23465p0o5" path="res://assets/menu_font.tres" id="2_lvl41"]
+[ext_resource type="AudioStream" uid="uid://dh7a66tet6mc4" path="res://audio/menuSelect.wav" id="3_q1jdu"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -52,6 +53,9 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_lvl41")
 theme_override_font_sizes/font_size = 48
 text = "Credits"
+
+[node name="ButtonPress" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_q1jdu")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]

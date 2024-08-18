@@ -42,7 +42,7 @@ func convert_entity():
 		get_parent().get_parent().add_child(converted_instance)
 		get_parent().queue_free()
 
-func _on_body_or_area_entered(body: Node2D) -> void:
+func _on_body_or_area_entered(_body: Node2D) -> void:
 	if just_converted:
 		return
 	animated_sprite.play("death")
