@@ -1,19 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfh2kb2jt70x2"]
+[gd_scene load_steps=5 format=3 uid="uid://cfh2kb2jt70x2"]
 
+[ext_resource type="Script" path="res://scripts/bed.gd" id="1_r4h3s"]
 [ext_resource type="Texture2D" uid="uid://casx2nhdsfswt" path="res://assets/bed.png" id="1_s47sg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkrpb"]
-size = Vector2(20, 4)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bh45x"]
+radius = 2.0
+height = 19.9826
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bawo1"]
+size = Vector2(23, 6)
 
 [node name="Bed" type="RigidBody2D"]
 collision_layer = 8
 collision_mask = 15
 gravity_scale = 0.0
 lock_rotation = true
-freeze = true
+linear_damp = 2.0
+script = ExtResource("1_r4h3s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_s47sg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_wkrpb")
+rotation = -1.57218
+shape = SubResource("CapsuleShape2D_bh45x")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_bawo1")
