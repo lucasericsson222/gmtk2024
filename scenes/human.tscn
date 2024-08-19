@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dec5kppe387bb"]
+[gd_scene load_steps=29 format=3 uid="uid://dec5kppe387bb"]
 
 [ext_resource type="Script" path="res://scripts/human.gd" id="1_xa53d"]
 [ext_resource type="Texture2D" uid="uid://c0owr654pqgqm" path="res://assets/human_running.png" id="2_51nk0"]
@@ -13,6 +13,9 @@ height = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8j2rp"]
 radius = 34.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1y3lb"]
+radius = 10.0499
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qqsy6"]
 atlas = ExtResource("2_vf6x0")
@@ -166,12 +169,20 @@ shape = SubResource("CapsuleShape2D_b51tl")
 
 [node name="DetectionRange" type="Area2D" parent="."]
 collision_layer = 0
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
-visible = false
 position = Vector2(2, 1)
 shape = SubResource("CircleShape2D_8j2rp")
 metadata/_edit_lock_ = true
+
+[node name="WallDetectionRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallDetectionRange"]
+position = Vector2(2, 1)
+shape = SubResource("CircleShape2D_1y3lb")
 
 [node name="WalkTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -207,5 +218,6 @@ texture = ExtResource("6_sdlmg")
 
 [connection signal="body_entered" from="DetectionRange" to="." method="_on_detection_range_body_entered"]
 [connection signal="body_exited" from="DetectionRange" to="." method="_on_detection_range_body_exited"]
+[connection signal="body_entered" from="WallDetectionRange" to="." method="_on_wall_detection_range_body_entered"]
 [connection signal="timeout" from="WalkTimer" to="." method="_on_walk_timer_timeout"]
 [connection signal="timeout" from="RunTimer" to="." method="_on_run_timer_timeout"]

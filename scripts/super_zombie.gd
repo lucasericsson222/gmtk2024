@@ -27,6 +27,7 @@ func _physics_process(_delta: float) -> void:
 		var zombies = get_tree().get_nodes_in_group("throwable_zombie")
 		if target == null:
 			if zombies.size() > 0:
+				$ThrowTimer.start()
 				var closest = zombies[0]
 				var min_dist = INF
 				for zombie: Node2D in zombies:
@@ -44,6 +45,7 @@ func _physics_process(_delta: float) -> void:
 		
 			var dist = (target.position - position).length()
 			if dist < grab_for_throw_dist:
+				$AnimatedSprite2D.play("throw")
 				target.be_thrown((get_global_mouse_position() - position).angle())
 				state = NORMAL
 				target = null
@@ -56,3 +58,11 @@ func _physics_process(_delta: float) -> void:
 	if state == ASCENDING:
 		return
 	move_and_slide()
+
+func _on_throw_timer_timeout() -> void:
+	state = NORMAL
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if state == NORMAL:
+		$AnimatedSprite2D.play("default")

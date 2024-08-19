@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cp8c2cb4h268c"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_q0dbo"]
-[ext_resource type="SystemFont" path="res://assets/menu_font.tres" id="2_lvl41"]
+[ext_resource type="SystemFont" uid="uid://dwbh23465p0o5" path="res://assets/menu_font.tres" id="2_lvl41"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -52,6 +52,11 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_lvl41")
 theme_override_font_sizes/font_size = 48
 text = "Credits"
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]

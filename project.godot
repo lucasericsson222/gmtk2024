@@ -17,9 +17,11 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 [autoload]
 
 AudioManager="*res://scenes/audio_manager.tscn"
+GlobalVars="*res://scripts/global_vars.gd"
 
 [display]
 
+window/size/mode=2
 window/stretch/mode="viewport"
 
 [input]
