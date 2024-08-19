@@ -199,7 +199,7 @@ height = 14.5
 [sub_resource type="CircleShape2D" id="CircleShape2D_asi6f"]
 radius = 22.0
 
-[node name="Zombie" type="CharacterBody2D" groups=["camera", "throwable_zombie", "zombie"]]
+[node name="Zombie" type="CharacterBody2D" groups=["camera", "small_zombie", "throwable_zombie", "zombie"]]
 y_sort_enabled = true
 collision_mask = 8
 script = ExtResource("1_r6vr2")

@@ -209,7 +209,7 @@ height = 22.0
 radius = 5.0
 height = 26.0
 
-[node name="SuperZombie" type="CharacterBody2D" groups=["camera", "zombie"]]
+[node name="SuperZombie" type="CharacterBody2D" groups=["big_zombie", "camera", "zombie"]]
 collision_mask = 8
 script = ExtResource("1_ubvri")
 

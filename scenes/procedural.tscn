@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dogrjobrdai5g"]
+[gd_scene load_steps=6 format=3 uid="uid://dogrjobrdai5g"]
 
 [ext_resource type="Script" path="res://procedural.gd" id="1_e3dp6"]
 [ext_resource type="PackedScene" uid="uid://ddeaamttq2dme" path="res://scenes/Tileset.tscn" id="2_3yf7s"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="4_bix7j"]
 [ext_resource type="PackedScene" uid="uid://b5aojrrsh38gw" path="res://scenes/pause_menu.tscn" id="4_s71r2"]
+[ext_resource type="PackedScene" uid="uid://bkfw5e3oowqgw" path="res://scenes/win_condition.tscn" id="5_c7ve8"]
 
 [node name="Procedural" type="Node2D"]
 y_sort_enabled = true
@@ -21,3 +22,5 @@ script = ExtResource("4_bix7j")
 [node name="PauseMenu" parent="Camera2D" instance=ExtResource("4_s71r2")]
 visible = false
 z_index = 10
+
+[node name="WinCondition" parent="." instance=ExtResource("5_c7ve8")]
