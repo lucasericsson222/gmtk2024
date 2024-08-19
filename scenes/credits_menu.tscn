@@ -1,7 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7dee780t1xeq"]
+[gd_scene load_steps=9 format=3 uid="uid://c7dee780t1xeq"]
 
 [ext_resource type="Script" path="res://scripts/credits_menu.gd" id="1_2kf1c"]
 [ext_resource type="SystemFont" uid="uid://dwbh23465p0o5" path="res://assets/menu_font.tres" id="2_51sfi"]
+[ext_resource type="Texture2D" uid="uid://dsxyjwwpsx7vk" path="res://assets/menu_buttons.png" id="3_aixh2"]
+[ext_resource type="Texture2D" uid="uid://mgav88ow3jbv" path="res://assets/menu_buttons_clicked.png" id="4_uep68"]
+[ext_resource type="Texture2D" uid="uid://cqt21v5t4j3oy" path="res://assets/menu_buttons_hover.png" id="5_smdsm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffats"]
+atlas = ExtResource("3_aixh2")
+region = Rect2(1, 82, 47, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yoyil"]
+atlas = ExtResource("4_uep68")
+region = Rect2(1, 82, 47, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vb7p"]
+atlas = ExtResource("5_smdsm")
+region = Rect2(1, 82, 47, 13)
 
 [node name="CreditsMenu" type="Control"]
 layout_mode = 3
@@ -14,8 +29,8 @@ script = ExtResource("1_2kf1c")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_right = 320.0
+offset_bottom = 180.0
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
@@ -25,7 +40,7 @@ theme_override_constants/margin_bottom = 12
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 20
+theme_override_constants/separation = 6
 
 [node name="Separator2" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -35,7 +50,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("2_51sfi")
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 12
 text = "Programming: Lucas, Miguel"
 
 [node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
@@ -43,7 +58,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("2_51sfi")
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 12
 text = "Art: Gabe, Thomas, Jackson"
 
 [node name="Label3" type="Label" parent="MarginContainer/VBoxContainer"]
@@ -51,7 +66,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("2_51sfi")
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 12
 text = "Audio: ?????"
 
 [node name="Label4" type="Label" parent="MarginContainer/VBoxContainer"]
@@ -59,19 +74,18 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("2_51sfi")
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 12
 text = "A Game by Gamma Egg Studios"
 
 [node name="Separator" type="Control" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 70)
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(250, 0)
+[node name="Back" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_51sfi")
-theme_override_font_sizes/font_size = 48
-text = "Back
-"
+size_flags_horizontal = 4
+texture_normal = SubResource("AtlasTexture_ffats")
+texture_pressed = SubResource("AtlasTexture_yoyil")
+texture_hover = SubResource("AtlasTexture_8vb7p")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

@@ -11,7 +11,7 @@ region = Rect2(2, 49, 46, 13)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4v5dp"]
 atlas = ExtResource("3_bnrmd")
-region = Rect2(3, 50, 45, 12)
+region = Rect2(2, 49, 45, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xg7qp"]
 atlas = ExtResource("4_lru4x")
@@ -40,22 +40,23 @@ script = ExtResource("1_jv7ag")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_right = 320.0
+offset_bottom = 180.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 20
+theme_override_constants/separation = 11
 
 [node name="Separator" type="Control" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 13
 text = "Volume"
 horizontal_alignment = 1
 
@@ -66,12 +67,14 @@ max_value = 0.0
 
 [node name="Controls" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 texture_normal = SubResource("AtlasTexture_bs8u2")
 texture_pressed = SubResource("AtlasTexture_4v5dp")
 texture_hover = SubResource("AtlasTexture_xg7qp")
 
 [node name="Back" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 texture_normal = SubResource("AtlasTexture_uut3y")
 texture_pressed = SubResource("AtlasTexture_lq2mf")
 texture_hover = SubResource("AtlasTexture_ie1mc")
