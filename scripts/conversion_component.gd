@@ -8,7 +8,8 @@ extends Area2D
 @export var has_bloody_conversions = true
 @export var number_of_conversions: float = 1
 @export var zombies_are_randomly_human = false
-var spawn_offset_distance = 5
+@export var randomly_spawn_doctors = false
+var spawn_offset_distance = 3
 
 #var human_scene = preload("res://scenes/human.tscn")
 
@@ -57,7 +58,14 @@ func convert_entity():
 			if zombies_are_randomly_human:
 				if randi_range(0, 1) == 0:
 					var human_scene = load("res://scenes/human.tscn")
+					if randomly_spawn_doctors:
+						if randi_range(0, 1) == 0:
+							human_scene = load("res://scenes/doctor.tscn")
 					converted_instance = human_scene.instantiate()
+			else:
+				if randomly_spawn_doctors:
+					if randi_range(0, 1) == 0:
+						converted_instance = load("res://scenes/doctor.tscn").instantiate()
 			converted_instance.position = center_position + offset
 			get_parent().get_parent().add_child(converted_instance)
 		get_parent().queue_free()

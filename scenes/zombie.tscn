@@ -222,6 +222,7 @@ converted_scene_name = "res://scenes/human.tscn"
 animated_sprite = NodePath("../AnimatedSprite2D")
 immunity_timeout = 0.1
 has_bloody_conversions = false
+randomly_spawn_doctors = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ConversionComponent"]
 visible = false

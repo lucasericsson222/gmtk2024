@@ -120,8 +120,7 @@ func _on_syringe_attack_delay_timer_timeout() -> void:
 		target = null
 		return
 	var laser_instance = syringe_laser_scene.instantiate()
-	var displacement = target.position - position
-	var facing = displacement.x < 0
+	var facing = $AnimatedSprite2D.flip_h
 	laser_instance.is_flipped = facing
 	var laser_offset
 	if facing:
