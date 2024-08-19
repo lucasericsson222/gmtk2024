@@ -65,7 +65,6 @@ func _on_run_timer_timeout() -> void:
 	state_chase = false
 	speed = WALKING_SPEED
 	animated_sprite.play("walk")
-	$RunTimer.stop()
 
 
 func _on_detection_range_body_entered(body: Node2D) -> void:

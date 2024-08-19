@@ -9,6 +9,9 @@
 y_sort_enabled = true
 script = ExtResource("1_e3dp6")
 
+[node name="AboveTileset" parent="." instance=ExtResource("2_3yf7s")]
+z_index = 1
+
 [node name="Tileset" parent="." instance=ExtResource("2_3yf7s")]
 
 [node name="Camera2D" type="Camera2D" parent="."]

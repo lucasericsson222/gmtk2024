@@ -267,53 +267,76 @@ func tile_edges():
 			var num_edges = 0
 			if is_floor_tile(i + 1, j):
 				set_tile(i, j, Vector2i(2, 5))
+				set_above_tile(i, j, Vector2i(2, 2))
 				num_edges += 1
 			if is_floor_tile(i - 1, j):
 				set_tile(i, j, Vector2i(4, 5))
+				set_above_tile(i, j, Vector2i(4, 2))
 				num_edges += 1
 			if is_floor_tile(i , j + 1):
 				set_tile(i, j, Vector2i(3, 4))
 				num_edges += 1
 			if is_floor_tile(i, j - 1):
 				set_tile(i, j, Vector2i(3, 11))
+				set_above_tile(i, j, Vector2i(3, 9))
+
 				num_edges += 1
 			if num_edges == 0:
 				if is_floor_tile(i - 1, j + 1):
 					set_tile(i, j, Vector2i(4, 4))
+					set_above_tile(i, j, Vector2i(4, 2))
 				if is_floor_tile(i + 1, j + 1):
 					set_tile(i, j, Vector2i(2, 4))
+					set_above_tile(i, j, Vector2i(2, 2))
 				if is_floor_tile(i - 1, j - 1):
 					set_tile(i, j, Vector2i(4, 11))
+					set_above_tile(i, j, Vector2i(4, 9))
 				if is_floor_tile(i + 1, j - 1):
 					set_tile(i, j, Vector2i(2, 11))
+					set_above_tile(i, j, Vector2i(2, 9))
+
 			if num_edges == 2:
 				if is_floor_tile(i + 1, j + 1) and is_floor_tile(i + 1, j) and is_floor_tile(i, j + 1):
 					set_tile(i, j, Vector2(2, 7))
+					set_above_tile(i, j, Vector2i.ZERO)
 				if is_floor_tile(i - 1, j + 1) and is_floor_tile(i - 1, j) and is_floor_tile(i, j + 1):
 					set_tile(i, j, Vector2i(4, 7))
+					set_above_tile(i, j, Vector2i.ZERO)
 				if is_floor_tile(i + 1, j - 1) and is_floor_tile(i + 1, j) and is_floor_tile(i, j - 1):
 					set_tile(i, j, Vector2i(2, 9))
+					set_above_tile(i, j, Vector2i(2, 7))
 				if is_floor_tile(i - 1, j - 1) and is_floor_tile(i - 1, j) and is_floor_tile(i, j - 1):
 					set_tile(i, j, Vector2i(4, 9))
+					set_above_tile(i, j, Vector2i(4, 7))
 			if num_edges > 2:
 				set_tile(i, j, floor_tile)
 	for i in range(-1, max_room_position.x + max_room_size.x):
 		for j in range(-1, max_room_position.y + max_room_size.y):
 			if get_tile(i, j) == Vector2i(4, 4):
 				set_tile(i, j - 1, Vector2i(4, 3))
+				set_above_tile(i, j - 1, Vector2i(4, 1))
 			if get_tile(i, j) == Vector2i(2, 4):
 				set_tile(i, j - 1, Vector2i(2, 3))
+				set_above_tile(i, j - 1, Vector2i(2, 1))
 			if get_tile(i, j) == Vector2i(3, 4):
 				set_tile(i, j - 1, Vector2i(3, 3))
+				set_above_tile(i, j - 1, Vector2i(3, 1))
 			if get_tile(i, j) == Vector2i(2, 7):
 				set_tile(i, j - 1, Vector2i(2, 6))
+				set_above_tile(i, j - 1, Vector2i(2, 4))
 			if get_tile(i, j) == Vector2i(4, 7):
 				set_tile(i, j - 1, Vector2i(4, 6))
+				set_above_tile(i, j - 1, Vector2i(4, 4))
 			if get_tile(i, j) == Vector2i(4, 7) and get_tile(i, j - 2) == Vector2i(4, 3):
 				set_tile(i, j - 1, Vector2i(6,7), 0)
+				set_above_tile(i, j - 1, Vector2i(4, 4))
 			if get_tile(i, j) == Vector2i(2, 7) and get_tile(i, j - 2) == Vector2i(2, 3):
 				set_tile(i, j - 1, Vector2i(2, 7), 0)
-				
+				set_above_tile(i, j - 1, Vector2i(2, 4))
+
+func set_above_tile(i,j, tile: Vector2i, tileset = 3):
+	$AboveTileset.set_cell(Vector2i(i,j), tileset, tile)
+
 func is_floor_tile(i, j) -> bool:
 	var tile = get_tile(i, j)
 	if tile == null:
