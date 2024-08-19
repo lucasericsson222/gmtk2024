@@ -8,11 +8,19 @@ var max_room_size := Vector2i(9, 9)
 var min_room_size := Vector2i(4, 4)
 var max_retries = 100
 var room_spacing = 6
+var human_dist_spawn_maximum = 4
+var doctor_dist_spawn_minimum = 0
 
 @onready var tileset: TileMapLayer = $Tileset
 var dungeon = Dungeon.new()
 
 var zombie_scene = preload("res://scenes/zombie.tscn")
+var doctor_scene = preload("res://scenes/doctor.tscn")
+var human_scene = preload("res://scenes/human.tscn")
+var bed_scene = preload("res://scenes/bed.tscn")
+
+
+var rooms: Array[Room] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,12 +31,50 @@ func _ready() -> void:
 	create_child_dungeon(dungeon)
 	tile_edges()
 	
-	var rooms = get_all_child_rooms(dungeon)
+	rooms = get_all_child_rooms(dungeon)
 	
 	var start_room = rooms[randi_range(0, rooms.size() - 1)]
 	
 	var zombie_instance = zombie_scene.instantiate()
 	add_to_room_random_position(start_room, zombie_instance)
+	
+	calc_distance_from_start(start_room)
+	
+	populate_rooms(rooms)
+	
+func _draw() -> void:
+	for room in rooms:
+		draw_char(SystemFont.new(),room.position * 16, str(room.dist))
+	
+	
+func populate_rooms(rooms: Array[Room]):
+	for room in rooms:
+		if room.dist < human_dist_spawn_maximum:
+			for i in range(0, randi_range(3, max(7 - room.dist, 3))):
+				var human_instance = human_scene.instantiate()
+				add_to_room_random_position(room, human_instance)
+		if room.dist > doctor_dist_spawn_minimum:
+			for i in range(0, randi_range(1, max(room.dist, 1))):
+				var doctor_instance = doctor_scene.instantiate()
+				add_to_room_random_position(room, doctor_instance)
+	
+	for i in range(0, 2):
+		var random_room = rooms[randi_range(0, rooms.size()) - 1]
+		for j in range(1, 4):
+			var bed_instance = bed_scene.instantiate()
+			add_to_room_random_position(random_room, bed_instance)
+
+
+func calc_distance_from_start(start: Room):
+	calc_distances_from_room(0, start, [])
+
+func calc_distances_from_room(current_distance, current_room: Room, visited: Array[int]):
+	if current_room.get_instance_id() in visited:
+		return
+	current_room.dist = current_distance
+	visited.append(current_room.get_instance_id())
+	for neighbor in current_room.neighbors:
+		calc_distances_from_room(current_distance + 1, neighbor, visited)
 
 func add_to_room_random_position(room, instance):
 	var random_x = randf_range(room.position.x, room.position.x + room.size.x)
@@ -92,13 +138,23 @@ func create_child_dungeon(dungeon):
 		var right = get_all_child_rooms(dungeon.right)
 		connect_rooms(left, right)
 	
-func connect_rooms(left_rooms, right_rooms):
-	var room_left_index = randi_range(0, left_rooms.size() - 1)
-	var room_right_index = randi_range(0, right_rooms.size() - 1)
+func connect_rooms(left_rooms: Array[Room], right_rooms: Array[Room]):
+	var min_dist_left_room = left_rooms[0]
+	var min_dist_right_room = right_rooms[0]
+	var min_dist = (min_dist_left_room.position - min_dist_right_room.position).length()
 	
-	var left_room = left_rooms[room_left_index]
-	var right_room = right_rooms[room_right_index]
+	for left_temp_room in left_rooms:
+		for right_temp_room in right_rooms:
+			var dist = (left_temp_room.position - right_temp_room.position).length()
+			if dist < min_dist:
+				min_dist_left_room = left_temp_room
+				min_dist_right_room = right_temp_room
+				
+	var left_room = min_dist_left_room
+	var right_room = min_dist_right_room
 	create_path(get_room_center(left_room), get_room_center(right_room))
+	left_room.neighbors.append(right_room)
+	right_room.neighbors.append(left_room)
 
 func create_path(left: Vector2i, right: Vector2i):
 	
@@ -126,10 +182,6 @@ func get_all_child_rooms(dungeon) -> Array[Room]:
 	rooms.append_array(get_all_child_rooms(dungeon.right))
 	return rooms
 	
-func _draw() -> void:
-	#draw_dungeon(dungeon)
-	pass
-	
 func draw_dungeon(dungeon: Dungeon):
 	if dungeon == null:
 		return
@@ -137,7 +189,7 @@ func draw_dungeon(dungeon: Dungeon):
 		draw_rect(Rect2(dungeon.position * 16, dungeon.size * 16), Color.WHITE, false)
 	draw_dungeon(dungeon.left)
 	draw_dungeon(dungeon.right)
-func random_room():
+func generate_random_room():
 	var new_room = Room.new()
 	new_room.position.x = randi_range(0, max_room_position.x)
 	new_room.position.y = randi_range(0, max_room_position.y)

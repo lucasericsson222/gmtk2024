@@ -11,6 +11,7 @@ var fire_range = 20
 var laser_length = 32
 var attack_position_dif: Vector2 = Vector2.ZERO
 var attack_decel_radius = 24
+var doctor_see_distance = 100
 
 var syringeIsFull = false 
 var dead = false
@@ -36,7 +37,7 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	track_nearest_zombie()
-	if target == null:
+	if target == null or (target.position - position).length() > doctor_see_distance:
 		attack_position_dif = Vector2.ZERO
 	else:
 		var displacement = (target.position - position)
