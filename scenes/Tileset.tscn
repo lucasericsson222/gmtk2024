@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddeaamttq2dme"]
+[gd_scene load_steps=10 format=3 uid="uid://ddeaamttq2dme"]
 
 [ext_resource type="Texture2D" uid="uid://br2b55imjvsd" path="res://assets/hospital_tiles.png" id="1_fd58p"]
 [ext_resource type="Texture2D" uid="uid://ctqtmpsr4os8y" path="res://assets/basic_floor_and_wall_tiles.png" id="2_53sp5"]
 [ext_resource type="Texture2D" uid="uid://s64g3ujhspl2" path="res://assets/window_hospital_tile.png" id="3_tnhmn"]
+[ext_resource type="Texture2D" uid="uid://b3qlqgp0fmbrc" path="res://assets/hospital_top_of_walls_only.png" id="4_d2o4e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sbvl1"]
 texture = ExtResource("1_fd58p")
@@ -140,6 +141,7 @@ texture = ExtResource("2_53sp5")
 4:2/0 = 0
 6:1/0 = 0
 6:2/0 = 0
+7:7/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u5whr"]
 texture = ExtResource("3_tnhmn")
@@ -164,6 +166,29 @@ texture = ExtResource("3_tnhmn")
 2:2/0 = 0
 3:2/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bd6or"]
+texture = ExtResource("4_d2o4e")
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+2:2/0 = 0
+4:2/0 = 0
+2:3/0 = 0
+4:3/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+2:8/0 = 0
+4:8/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_jr4sw"]
 physics_layer_0/collision_layer = 8
 physics_layer_0/collision_mask = 8
@@ -173,6 +198,7 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_w4hnm")
 sources/0 = SubResource("TileSetAtlasSource_sbvl1")
 sources/2 = SubResource("TileSetAtlasSource_u5whr")
+sources/3 = SubResource("TileSetAtlasSource_bd6or")
 
 [node name="Tileset" type="TileMapLayer"]
 z_index = -5
