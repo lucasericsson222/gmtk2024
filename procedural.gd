@@ -18,6 +18,7 @@ var zombie_scene = preload("res://scenes/zombie.tscn")
 var doctor_scene = preload("res://scenes/doctor.tscn")
 var human_scene = preload("res://scenes/human.tscn")
 var bed_scene = preload("res://scenes/bed.tscn")
+var table_scene = preload("res://scenes/table.tscn")
 
 
 var rooms: Array[Room] = []
@@ -42,7 +43,11 @@ func _ready() -> void:
 	
 	populate_rooms(rooms)
 	
+	randomize_floor_tiles()
+	
 func _draw() -> void:
+	return
+	# below are options for drawing debug info
 	for room in rooms:
 		draw_char(SystemFont.new(),room.position * 16, str(room.dist))
 	
@@ -63,6 +68,11 @@ func populate_rooms(rooms: Array[Room]):
 		for j in range(1, 4):
 			var bed_instance = bed_scene.instantiate()
 			add_to_room_random_position(random_room, bed_instance)
+	for i in range(0, 2):
+		var random_room = rooms[randi_range(0, rooms.size()) - 1]
+		for j in range(1, 4):
+			var table_instance = table_scene.instantiate()
+			add_to_room_random_position(random_room, table_instance)
 
 
 func calc_distance_from_start(start: Room):
@@ -196,7 +206,27 @@ func generate_random_room():
 	new_room.size.x = randi_range(5, max_room_size.x)
 	new_room.size.y = randi_range(5, max_room_size.y)
 	return new_room
-	
+
+func randomize_floor_tiles():
+	for i in range(-1, max_room_position.x + max_room_size.x):
+		for j in range(-1, max_room_position.y + max_room_size.y):
+			if is_floor_tile(i,j):
+				var random_tile = randi_range(0, 7)
+				var tile_to_set = Vector2i(7, 4)
+				if random_tile == 1:
+					tile_to_set = Vector2i(8, 5)
+				if random_tile == 2:
+					tile_to_set = Vector2i(8, 3)
+				if random_tile == 3:
+					tile_to_set = Vector2i(9, 4)
+				if random_tile == 4:
+					tile_to_set = Vector2i(10, 3)
+				if random_tile == 5:
+					tile_to_set = Vector2i(10, 5)
+				if random_tile == 6:
+					tile_to_set = Vector2i(11, 4)
+				set_tile(i, j, tile_to_set, 0)
+
 func tile_edges():
 	for i in range(-1, max_room_position.x + max_room_size.x):
 		for j in range(-1, max_room_position.y + max_room_size.y):
@@ -247,6 +277,10 @@ func tile_edges():
 				set_tile(i, j - 1, Vector2i(2, 6))
 			if get_tile(i, j) == Vector2i(4, 7):
 				set_tile(i, j - 1, Vector2i(4, 6))
+			if get_tile(i, j) == Vector2i(4, 7) and get_tile(i, j - 2) == Vector2i(4, 3):
+				set_tile(i, j - 1, Vector2i(6,7), 0)
+			if get_tile(i, j) == Vector2i(2, 7) and get_tile(i, j - 2) == Vector2i(2, 3):
+				set_tile(i, j - 1, Vector2i(2, 7), 0)
 				
 func is_floor_tile(i, j) -> bool:
 	var tile = get_tile(i, j)
@@ -254,8 +288,8 @@ func is_floor_tile(i, j) -> bool:
 		return false;
 	return tile == floor_tile
 
-func set_tile(i, j, tile: Vector2i):
-	$Tileset.set_cell(Vector2i(i, j), 1, tile)
+func set_tile(i, j, tile: Vector2i, layer = 1):
+	$Tileset.set_cell(Vector2i(i, j), layer, tile)
 
 func get_tile(i, j):
 	return tileset.get_cell_atlas_coords(Vector2i(i , j))
