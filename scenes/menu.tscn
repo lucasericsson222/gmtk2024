@@ -1,7 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://cp8c2cb4h268c"]
+[gd_scene load_steps=14 format=3 uid="uid://cp8c2cb4h268c"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_q0dbo"]
-[ext_resource type="SystemFont" uid="uid://dwbh23465p0o5" path="res://assets/menu_font.tres" id="2_lvl41"]
+[ext_resource type="Texture2D" uid="uid://dsxyjwwpsx7vk" path="res://assets/menu_buttons.png" id="2_apugt"]
+[ext_resource type="Texture2D" uid="uid://mgav88ow3jbv" path="res://assets/menu_buttons_clicked.png" id="3_hvkmk"]
+[ext_resource type="Texture2D" uid="uid://cqt21v5t4j3oy" path="res://assets/menu_buttons_hover.png" id="4_nwyip"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ronr"]
+atlas = ExtResource("2_apugt")
+region = Rect2(1, 2, 47, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1ulu"]
+atlas = ExtResource("3_hvkmk")
+region = Rect2(2, 3, 46, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u3li"]
+atlas = ExtResource("4_nwyip")
+region = Rect2(1, 2, 47, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sm6in"]
+atlas = ExtResource("2_apugt")
+region = Rect2(1, 18, 47, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yk28"]
+atlas = ExtResource("3_hvkmk")
+region = Rect2(2, 19, 46, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8c8km"]
+atlas = ExtResource("4_nwyip")
+region = Rect2(1, 18, 47, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8e4nw"]
+atlas = ExtResource("2_apugt")
+region = Rect2(1, 33, 47, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvf42"]
+atlas = ExtResource("3_hvkmk")
+region = Rect2(2, 34, 46, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsos5"]
+atlas = ExtResource("4_nwyip")
+region = Rect2(1, 33, 47, 15)
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -28,35 +66,29 @@ theme_override_constants/margin_bottom = 12
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 20
+theme_override_constants/separation = 7
 
 [node name="Separator" type="Control" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 
-[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(250, 0)
+[node name="Play" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_lvl41")
-theme_override_font_sizes/font_size = 48
-text = "Play"
+texture_normal = SubResource("AtlasTexture_4ronr")
+texture_pressed = SubResource("AtlasTexture_s1ulu")
+texture_hover = SubResource("AtlasTexture_6u3li")
 
-[node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Options" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_lvl41")
-theme_override_font_sizes/font_size = 48
-text = "Options"
+texture_normal = SubResource("AtlasTexture_sm6in")
+texture_pressed = SubResource("AtlasTexture_8yk28")
+texture_hover = SubResource("AtlasTexture_8c8km")
 
-[node name="Credits" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Credits" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_lvl41")
-theme_override_font_sizes/font_size = 48
-text = "Credits"
-
-[node name="TextureButton" type="TextureButton" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+texture_normal = SubResource("AtlasTexture_8e4nw")
+texture_pressed = SubResource("AtlasTexture_pvf42")
+texture_hover = SubResource("AtlasTexture_tsos5")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]

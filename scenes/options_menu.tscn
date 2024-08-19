@@ -1,7 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://d8k17svky74p"]
+[gd_scene load_steps=11 format=3 uid="uid://d8k17svky74p"]
 
 [ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_jv7ag"]
-[ext_resource type="SystemFont" uid="uid://dwbh23465p0o5" path="res://assets/menu_font.tres" id="2_qssc5"]
+[ext_resource type="Texture2D" uid="uid://dsxyjwwpsx7vk" path="res://assets/menu_buttons.png" id="2_2e0ce"]
+[ext_resource type="Texture2D" uid="uid://mgav88ow3jbv" path="res://assets/menu_buttons_clicked.png" id="3_bnrmd"]
+[ext_resource type="Texture2D" uid="uid://cqt21v5t4j3oy" path="res://assets/menu_buttons_hover.png" id="4_lru4x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bs8u2"]
+atlas = ExtResource("2_2e0ce")
+region = Rect2(2, 49, 46, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4v5dp"]
+atlas = ExtResource("3_bnrmd")
+region = Rect2(3, 50, 45, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xg7qp"]
+atlas = ExtResource("4_lru4x")
+region = Rect2(2, 49, 46, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uut3y"]
+atlas = ExtResource("2_2e0ce")
+region = Rect2(1, 82, 47, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lq2mf"]
+atlas = ExtResource("3_bnrmd")
+region = Rect2(1, 82, 47, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ie1mc"]
+atlas = ExtResource("4_lru4x")
+region = Rect2(1, 82, 47, 13)
 
 [node name="OptionsMenu" type="Control"]
 layout_mode = 3
@@ -38,19 +64,17 @@ layout_mode = 2
 min_value = -20.0
 max_value = 0.0
 
-[node name="Controls" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Controls" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_qssc5")
-theme_override_font_sizes/font_size = 48
-text = "Controls"
+texture_normal = SubResource("AtlasTexture_bs8u2")
+texture_pressed = SubResource("AtlasTexture_4v5dp")
+texture_hover = SubResource("AtlasTexture_xg7qp")
 
-[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(250, 0)
+[node name="Back" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_qssc5")
-theme_override_font_sizes/font_size = 48
-text = "Back
-"
+texture_normal = SubResource("AtlasTexture_uut3y")
+texture_pressed = SubResource("AtlasTexture_lq2mf")
+texture_hover = SubResource("AtlasTexture_ie1mc")
 
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
