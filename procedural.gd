@@ -88,7 +88,7 @@ func populate_rooms(rooms: Array[Room]):
 				var human_instance = human_scene.instantiate()
 				add_to_room_random_position(room, human_instance)
 		if room.dist > doctor_dist_spawn_minimum:
-			for i in range(0, randi_range(1, max(room.dist, 1))):
+			for i in range(0, randi_range(3, max(room.dist, 3))):
 				var doctor_instance = doctor_scene.instantiate()
 				add_to_room_random_position(room, doctor_instance)
 	

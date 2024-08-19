@@ -209,4 +209,9 @@ y_sort_enabled = true
 position = Vector2(0, 2)
 texture = ExtResource("6_ku14f")
 
+[node name="SyringeAttackDelayTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
 [connection signal="timeout" from="SyringeRechargeTimer" to="." method="_on_syringe_recharge_timer_timeout"]
+[connection signal="timeout" from="SyringeAttackDelayTimer" to="." method="_on_syringe_attack_delay_timer_timeout"]

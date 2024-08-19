@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-enum {RUNNING, TRACKING, ATTACKING}
+enum {RUNNING, TRACKING, ATTACKING, SHOOTING}
 
 var state = RUNNING
 var max_speed: float = 60 
@@ -30,6 +30,8 @@ func _process(_delta: float) -> void:
 	queue_redraw()
 
 func _physics_process(_delta: float) -> void:
+	if state == SHOOTING:
+		return
 	if $AnimatedSprite2D.animation == "death":
 		velocity = Vector2.ZERO
 		dead = true
@@ -68,19 +70,9 @@ func _physics_process(_delta: float) -> void:
 				velocity /= 1.5
 			
 			if displacement.length() < fire_range:
-				var laser_instance = syringe_laser_scene.instantiate()
-				laser_instance.is_flipped = facing
-				var laser_offset
-				if facing:
-					laser_offset = Vector2(-laser_length/2.0, 0) # sprite is laser_length long, centered, so half of laser length uncenters 
-				else:
-					laser_offset = Vector2(laser_length/2.0, 0)
-				laser_instance.position = laser_offset
-				add_child(laser_instance)
-				state = TRACKING
-				syringeIsFull = false
-				$SyringeRechargeTimer.start()
-				$AnimatedSprite2D.animation = "empty"
+				$SyringeAttackDelayTimer.start()
+				state = SHOOTING
+				$AnimatedSprite2D.pause()
 				
 
 	velocity /= 1.1
@@ -89,6 +81,8 @@ func _physics_process(_delta: float) -> void:
 
 	
 	move_and_slide()
+
+
 
 func _on_syringe_recharge_timer_timeout() -> void:
 	if dead:
@@ -117,3 +111,27 @@ func array_min(arr: Array[Node2D]) -> Node2D:
 			minvalue = curvalue.length()
 			minitem = item
 	return minitem
+
+
+func _on_syringe_attack_delay_timer_timeout() -> void:
+	if target == null:
+		return
+	if !is_instance_valid(target):
+		target = null
+		return
+	var laser_instance = syringe_laser_scene.instantiate()
+	var displacement = target.position - position
+	var facing = displacement.x < 0
+	laser_instance.is_flipped = facing
+	var laser_offset
+	if facing:
+		laser_offset = Vector2(-laser_length/2.0, 0) # sprite is laser_length long, centered, so half of laser length uncenters 
+	else:
+		laser_offset = Vector2(laser_length/2.0, 0)
+	laser_instance.position = laser_offset
+	add_child(laser_instance)
+	state = TRACKING
+	syringeIsFull = false
+	$SyringeRechargeTimer.start()
+	$AnimatedSprite2D.animation = "empty"
+	$AnimatedSprite2D.play()
