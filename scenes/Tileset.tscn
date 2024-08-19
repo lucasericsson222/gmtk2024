@@ -17,6 +17,7 @@ texture = ExtResource("2_53sp5")
 2:4/0 = 0
 2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -8, -8, -8, 8, 8, 8)
 2:5/0 = 0
+2:5/0/terrain_set = 0
 2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-1, -8, -8, -8, -8, 8, -1, 8)
 3:5/0 = 0
 4:5/0 = 0
@@ -25,7 +26,10 @@ texture = ExtResource("2_53sp5")
 4:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 1, -8, 1, 8, 8, 8)
 3:6/0 = 0
 2:6/0 = 0
+2:6/0/terrain_set = 0
+2:6/0/terrain = 0
 2:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-1, -8, -8, -8, -8, 8, -1, 8)
+2:6/0/terrains_peering_bit/right_side = 0
 1:6/0 = 0
 1:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -8, -8, -8, 8, 8, 8)
 1:7/0 = 0
@@ -64,10 +68,18 @@ texture = ExtResource("2_53sp5")
 4:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, 8, -8, 1, -8, 1, 1, -8, 1, -8, 8)
 4:10/0 = 0
 4:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 1, -8, 1, 8, 8, 8)
+4:0/0 = 0
+4:1/0 = 0
+4:2/0 = 0
+6:1/0 = 0
+6:2/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_jr4sw"]
 physics_layer_0/collision_layer = 8
 physics_layer_0/collision_mask = 8
+terrain_set_0/mode = 2
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_w4hnm")
 
 [node name="Tileset" type="TileMapLayer"]

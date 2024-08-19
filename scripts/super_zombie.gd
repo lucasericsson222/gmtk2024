@@ -37,6 +37,8 @@ func _physics_process(_delta: float) -> void:
 						closest = zombie
 						min_dist = dist
 				target = closest
+			else:
+				state = NORMAL
 		else:
 			velocity = zombie_component.max_speed * (target.position - position).normalized()
 		
