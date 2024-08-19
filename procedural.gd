@@ -19,7 +19,11 @@ var doctor_scene = preload("res://scenes/doctor.tscn")
 var human_scene = preload("res://scenes/human.tscn")
 var bed_scene = preload("res://scenes/bed.tscn")
 var table_scene = preload("res://scenes/table.tscn")
+var cheese_scene = preload("res://scenes/cheese.tscn")
+var cheese_human_scene = preload("res://scenes/cheese_human.tscn")
 
+var paused = false
+@onready var pause_menu: Control = $Camera2D/PauseMenu
 
 var rooms: Array[Room] = []
 
@@ -36,14 +40,39 @@ func _ready() -> void:
 	
 	var start_room = rooms[randi_range(0, rooms.size() - 1)]
 	
-	var zombie_instance = zombie_scene.instantiate()
-	add_to_room_random_position(start_room, zombie_instance)
+	var cheese_instance = cheese_scene.instantiate()
+	add_to_room_center(start_room, cheese_instance)
+	
+	var cheese_human_instance = cheese_human_scene.instantiate()
+	add_to_room_random_position(start_room, cheese_human_instance)
 	
 	calc_distance_from_start(start_room)
 	
 	populate_rooms(rooms)
 	
 	randomize_floor_tiles()
+	
+	AudioManager.play_song(AudioManager.Songs.MAIN)
+	
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		pauseMenu()
+
+func pauseMenu():
+	paused = !paused
+	AudioManager.play_sfx(AudioManager.SoundEffects.MENU_BUTTON)
+	
+	if paused:
+		pause_menu.show()
+		Engine.time_scale = 0
+	else:
+		pause_menu.hide()
+		Engine.time_scale = 1
+
+func add_to_room_center(room: Room, instance: Node2D):
+	instance.position = room.size * 16 / 2 + room.position * 16
+	add_child(instance)
 	
 func _draw() -> void:
 	return
@@ -168,15 +197,18 @@ func connect_rooms(left_rooms: Array[Room], right_rooms: Array[Room]):
 
 func create_path(left: Vector2i, right: Vector2i):
 	
-	var min_x = min(left.x, right.x)
-	var min_y = min(left.y, right.y)
-	var max_x = max(left.x, right.x)
-	var max_y = max(left.y, right.y)
+	var current_pos = left
 	
-	for i in range(min_x, max_x):
-		set_tile(i, min_y, floor_tile)
-	for j in range(min_y, max_y):
-		set_tile(max_x, j, floor_tile)
+	while current_pos != right:
+		set_tile(current_pos.x, current_pos.y, floor_tile)
+		if right.x > current_pos.x:
+			current_pos.x += 1
+		elif right.y > current_pos.y:
+			current_pos.y += 1
+		elif right.x < current_pos.x:
+			current_pos.x -= 1
+		elif right.y < current_pos.y:
+			current_pos.y -= 1
 	
 func get_room_center(room:Room):
 	return room.size / 2 + room.position

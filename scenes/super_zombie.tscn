@@ -209,7 +209,7 @@ height = 22.0
 radius = 5.0
 height = 26.0
 
-[node name="SuperZombie" type="CharacterBody2D" groups=["zombie"]]
+[node name="SuperZombie" type="CharacterBody2D" groups=["camera", "zombie"]]
 collision_mask = 8
 script = ExtResource("1_ubvri")
 
@@ -233,7 +233,8 @@ collision_mask = 4
 animated_sprite = NodePath("../AnimatedSprite2D")
 immunity_timeout = 0.1
 has_bloody_conversions = false
-number_of_conversions = 4.0
+number_of_conversions = 5.0
+zombies_are_randomly_human = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ConversionComponent"]
 position = Vector2(0, 3)

@@ -10,7 +10,7 @@ func _ready() -> void:
 func _on_play_pressed() -> void:
 	AudioManager.play_sfx(AudioManager.SoundEffects.MENU_BUTTON)
 	GlobalVars.main_menu_music_playing = false
-	get_tree().change_scene_to_file("res://scenes/world.tscn")
+	get_tree().change_scene_to_file("res://scenes/procedural.tscn")
 
 
 func _on_options_pressed() -> void:

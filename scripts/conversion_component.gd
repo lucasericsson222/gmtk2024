@@ -7,7 +7,10 @@ extends Area2D
 @export var blood_color: Color
 @export var has_bloody_conversions = true
 @export var number_of_conversions: float = 1
+@export var zombies_are_randomly_human = false
 var spawn_offset_distance = 5
+
+#var human_scene = preload("res://scenes/human.tscn")
 
 var dying = false
 var just_converted = true
@@ -51,6 +54,10 @@ func convert_entity():
 		for i in range(0, number_of_conversions):
 			var offset = Vector2(1, 0).rotated(i * 360 / number_of_conversions) * spawn_offset_distance
 			var converted_instance = converted_scene.instantiate()
+			if zombies_are_randomly_human:
+				if randi_range(0, 1) == 0:
+					var human_scene = load("res://scenes/human.tscn")
+					converted_instance = human_scene.instantiate()
 			converted_instance.position = center_position + offset
 			get_parent().get_parent().add_child(converted_instance)
 		get_parent().queue_free()
