@@ -1,9 +1,25 @@
-[gd_scene load_steps=11 format=3 uid="uid://d8k17svky74p"]
+[gd_scene load_steps=16 format=3 uid="uid://d8k17svky74p"]
 
 [ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_jv7ag"]
 [ext_resource type="Texture2D" uid="uid://dsxyjwwpsx7vk" path="res://assets/menu_buttons.png" id="2_2e0ce"]
+[ext_resource type="SystemFont" uid="uid://dwbh23465p0o5" path="res://assets/menu_font.tres" id="2_lrdad"]
+[ext_resource type="Texture2D" uid="uid://clwei063652ki" path="res://assets/slider.png" id="3_bcfur"]
 [ext_resource type="Texture2D" uid="uid://mgav88ow3jbv" path="res://assets/menu_buttons_clicked.png" id="3_bnrmd"]
 [ext_resource type="Texture2D" uid="uid://cqt21v5t4j3oy" path="res://assets/menu_buttons_hover.png" id="4_lru4x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyc75"]
+bg_color = Color(0.596078, 0.239216, 0.27451, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_top = 1.0
+expand_margin_bottom = 1.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_stdre"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qnbsb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bs8u2"]
 atlas = ExtResource("2_2e0ce")
@@ -44,7 +60,7 @@ offset_right = 320.0
 offset_bottom = 180.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-custom_minimum_size = Vector2(160, 0)
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -56,12 +72,18 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_lrdad")
 theme_override_font_sizes/font_size = 13
 text = "Volume"
 horizontal_alignment = 1
 
 [node name="Volume" type="HSlider" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_icons/grabber = ExtResource("3_bcfur")
+theme_override_icons/grabber_highlight = ExtResource("3_bcfur")
+theme_override_styles/slider = SubResource("StyleBoxFlat_gyc75")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_stdre")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_qnbsb")
 min_value = -20.0
 max_value = 0.0
 

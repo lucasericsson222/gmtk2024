@@ -67,7 +67,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("2_51sfi")
 theme_override_font_sizes/font_size = 12
-text = "Audio: ?????"
+text = "Audio: Lucas, Jackson, Miguel"
 
 [node name="Label4" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
