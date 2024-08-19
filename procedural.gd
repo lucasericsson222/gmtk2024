@@ -11,6 +11,8 @@ var room_spacing = 6
 var human_dist_spawn_maximum = 4
 var doctor_dist_spawn_minimum = 0
 
+var dark_tile = Vector2i(1,0)
+
 @onready var tileset: TileMapLayer = $Tileset
 var dungeon = Dungeon.new()
 
@@ -268,10 +270,12 @@ func tile_edges():
 			if is_floor_tile(i + 1, j):
 				set_tile(i, j, Vector2i(2, 5))
 				set_above_tile(i, j, Vector2i(2, 2))
+				kind_set_above_tile(i - 1, j, dark_tile)
 				num_edges += 1
 			if is_floor_tile(i - 1, j):
 				set_tile(i, j, Vector2i(4, 5))
 				set_above_tile(i, j, Vector2i(4, 2))
+				kind_set_above_tile(i + 1, j, dark_tile)
 				num_edges += 1
 			if is_floor_tile(i , j + 1):
 				set_tile(i, j, Vector2i(3, 4))
@@ -279,21 +283,30 @@ func tile_edges():
 			if is_floor_tile(i, j - 1):
 				set_tile(i, j, Vector2i(3, 11))
 				set_above_tile(i, j, Vector2i(3, 9))
+				kind_set_above_tile(i, j + 1, dark_tile)
 
 				num_edges += 1
 			if num_edges == 0:
 				if is_floor_tile(i - 1, j + 1):
 					set_tile(i, j, Vector2i(4, 4))
 					set_above_tile(i, j, Vector2i(4, 2))
+					kind_set_above_tile(i + 1, j, dark_tile)
 				if is_floor_tile(i + 1, j + 1):
 					set_tile(i, j, Vector2i(2, 4))
 					set_above_tile(i, j, Vector2i(2, 2))
+					kind_set_above_tile(i - 1, j, dark_tile)
 				if is_floor_tile(i - 1, j - 1):
 					set_tile(i, j, Vector2i(4, 11))
 					set_above_tile(i, j, Vector2i(4, 9))
+					kind_set_above_tile(i, j + 1, dark_tile)
+					kind_set_above_tile(i + 1, j + 1, dark_tile)
+					kind_set_above_tile(i + 1, j, dark_tile)
 				if is_floor_tile(i + 1, j - 1):
 					set_tile(i, j, Vector2i(2, 11))
 					set_above_tile(i, j, Vector2i(2, 9))
+					kind_set_above_tile(i, j + 1, dark_tile)
+					kind_set_above_tile(i - 1, j + 1, dark_tile)
+					kind_set_above_tile(i - 1, j, dark_tile)
 
 			if num_edges == 2:
 				if is_floor_tile(i + 1, j + 1) and is_floor_tile(i + 1, j) and is_floor_tile(i, j + 1):
@@ -305,34 +318,57 @@ func tile_edges():
 				if is_floor_tile(i + 1, j - 1) and is_floor_tile(i + 1, j) and is_floor_tile(i, j - 1):
 					set_tile(i, j, Vector2i(2, 9))
 					set_above_tile(i, j, Vector2i(2, 7))
+					kind_set_above_tile(i - 1, j + 1, dark_tile)
 				if is_floor_tile(i - 1, j - 1) and is_floor_tile(i - 1, j) and is_floor_tile(i, j - 1):
 					set_tile(i, j, Vector2i(4, 9))
 					set_above_tile(i, j, Vector2i(4, 7))
+					kind_set_above_tile(i + 1, j + 1, dark_tile)
 			if num_edges > 2:
 				set_tile(i, j, floor_tile)
+				set_above_tile(i, j, Vector2i(-1, -1))
 	for i in range(-1, max_room_position.x + max_room_size.x):
 		for j in range(-1, max_room_position.y + max_room_size.y):
 			if get_tile(i, j) == Vector2i(4, 4):
 				set_tile(i, j - 1, Vector2i(4, 3))
 				set_above_tile(i, j - 1, Vector2i(4, 1))
+				kind_set_above_tile(i, j - 2, dark_tile)
+				kind_set_above_tile(i + 1, j - 2, dark_tile)
+				kind_set_above_tile(i + 1, j - 1, dark_tile)
 			if get_tile(i, j) == Vector2i(2, 4):
 				set_tile(i, j - 1, Vector2i(2, 3))
 				set_above_tile(i, j - 1, Vector2i(2, 1))
+				kind_set_above_tile(i, j - 2, dark_tile)
+				kind_set_above_tile(i - 1, j - 2, dark_tile)
+				kind_set_above_tile(i - 1, j - 1, dark_tile)
 			if get_tile(i, j) == Vector2i(3, 4):
 				set_tile(i, j - 1, Vector2i(3, 3))
 				set_above_tile(i, j - 1, Vector2i(3, 1))
+				kind_set_above_tile(i, j - 2, dark_tile)
 			if get_tile(i, j) == Vector2i(2, 7):
 				set_tile(i, j - 1, Vector2i(2, 6))
 				set_above_tile(i, j - 1, Vector2i(2, 4))
+				kind_set_above_tile(i - 1, j - 2, dark_tile)
 			if get_tile(i, j) == Vector2i(4, 7):
 				set_tile(i, j - 1, Vector2i(4, 6))
 				set_above_tile(i, j - 1, Vector2i(4, 4))
+				kind_set_above_tile(i + 1, j, dark_tile)
 			if get_tile(i, j) == Vector2i(4, 7) and get_tile(i, j - 2) == Vector2i(4, 3):
 				set_tile(i, j - 1, Vector2i(6,7), 0)
 				set_above_tile(i, j - 1, Vector2i(4, 4))
+				kind_set_above_tile(i + 1, j, dark_tile)
 			if get_tile(i, j) == Vector2i(2, 7) and get_tile(i, j - 2) == Vector2i(2, 3):
 				set_tile(i, j - 1, Vector2i(2, 7), 0)
 				set_above_tile(i, j - 1, Vector2i(2, 4))
+				kind_set_above_tile(i - 1, j - 2, dark_tile)
+	for i in range(-1, max_room_position.x + max_room_size.x):
+		for j in range(-1, max_room_position.y + max_room_size.y):
+			if $AboveTileset.get_cell_atlas_coords(Vector2i(i,j)) == dark_tile:
+				if get_tile(i,j) != Vector2i(-1,-1):
+					set_above_tile(i, j, Vector2i(-1, -1))
+
+func kind_set_above_tile(i, j, tile, tileset = 3):
+	if get_tile(i, j) == Vector2i(-1, -1):
+		set_above_tile(i,j,tile,tileset)
 
 func set_above_tile(i,j, tile: Vector2i, tileset = 3):
 	$AboveTileset.set_cell(Vector2i(i,j), tileset, tile)

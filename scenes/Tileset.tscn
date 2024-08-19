@@ -188,6 +188,7 @@ texture = ExtResource("4_d2o4e")
 2:9/0 = 0
 3:9/0 = 0
 4:9/0 = 0
+1:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_jr4sw"]
 physics_layer_0/collision_layer = 8
