@@ -193,6 +193,7 @@ position = Vector2(2, 1)
 sprite_frames = SubResource("SpriteFrames_qs1yk")
 animation = &"walk"
 autoplay = "walk"
+frame_progress = 0.0818794
 metadata/_edit_lock_ = true
 
 [node name="ConversionComponent" parent="." node_paths=PackedStringArray("animated_sprite") instance=ExtResource("3_xe0lx")]

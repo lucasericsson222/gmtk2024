@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://dh6f77tne63g0"]
+
+[ext_resource type="Texture2D" uid="uid://dfkulyxib6ire" path="res://assets/grenade.png" id="1_otk0x"]
+[ext_resource type="Texture2D" uid="uid://bjpdsc14gvu6t" path="res://assets/grenade_explosion.png" id="2_ove2v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jud3l"]
+atlas = ExtResource("1_otk0x")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thamj"]
+atlas = ExtResource("2_ove2v")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vfud"]
+atlas = ExtResource("2_ove2v")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sob24"]
+atlas = ExtResource("2_ove2v")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lctes"]
+atlas = ExtResource("2_ove2v")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlisc"]
+atlas = ExtResource("2_ove2v")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_384ay"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jud3l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_thamj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vfud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sob24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lctes")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlisc")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 12.0
+}]
+
+[node name="Grenade" type="Area2D"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_384ay")
+animation = &"explode"
+frame = 4
+frame_progress = 1.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(6, -6, 9, 0, 6, 7, 0, 9, -6, 7, -9, 0, -6, -6, 0, -8)

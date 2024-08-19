@@ -30,6 +30,7 @@ func _process(_delta: float) -> void:
 		average_position += z.position
 	average_position /= zombies.size()
 	self.position = average_position
+	#self.position = Vector2(floor(average_position.x), floor(average_position.y))
 
 func _on_outro_timeout():
 	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
