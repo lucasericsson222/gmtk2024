@@ -1,7 +1,9 @@
 extends Node2D
 
 enum SoundEffects {
-	MENU_BUTTON
+	MENU_BUTTON,
+	ZOMBIE_GROAN_1,
+	ZOMBIE_GROAN_2
 }
 
 enum Songs {
@@ -11,7 +13,9 @@ enum Songs {
 }
 
 const SFX_RESOURCES := {
-	SoundEffects.MENU_BUTTON: preload("res://audio/menuSelect.wav")
+	SoundEffects.MENU_BUTTON: preload("res://audio/menu_select.wav"),
+	SoundEffects.ZOMBIE_GROAN_1: preload("res://audio/zombie_1.wav"),
+	SoundEffects.ZOMBIE_GROAN_2: preload("res://audio/zombie_2.wav")
 }
 
 const SONG_RESOURCES := {

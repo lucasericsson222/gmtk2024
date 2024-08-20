@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dh7a66tet6mc4"
-path="res://.godot/imported/menuSelect.wav-cb8d97dbdb7dc56fc4249faad0066c94.sample"
+uid="uid://crw2bsewcipgc"
+path="res://.godot/imported/zombie_1.wav-1ace0fa940e070d0aac131a9a29f7df2.sample"
 
 [deps]
 
-source_file="res://audio/menuSelect.wav"
-dest_files=["res://.godot/imported/menuSelect.wav-cb8d97dbdb7dc56fc4249faad0066c94.sample"]
+source_file="res://audio/zombie_1.wav"
+dest_files=["res://.godot/imported/zombie_1.wav-1ace0fa940e070d0aac131a9a29f7df2.sample"]
 
 [params]
 

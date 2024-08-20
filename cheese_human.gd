@@ -29,7 +29,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	print("HI")
 	if dying:
 		var zombie_instance = zombie_scene.instantiate()
 		zombie_instance.position = position

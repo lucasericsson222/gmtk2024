@@ -12,6 +12,13 @@ var z_throw_velocity = 2
 var z_velocity = 0
 var z_gravity = -5
 var z_pos = 0
+
+func _ready() -> void:
+	if randi_range(0, 1) == 0:
+		AudioManager.play_sfx(AudioManager.SoundEffects.ZOMBIE_GROAN_1)
+	else:
+		AudioManager.play_sfx(AudioManager.SoundEffects.ZOMBIE_GROAN_2)
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	

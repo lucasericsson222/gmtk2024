@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d8k17svky74p"]
+[gd_scene load_steps=13 format=3 uid="uid://d8k17svky74p"]
 
 [ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_jv7ag"]
 [ext_resource type="Texture2D" uid="uid://dsxyjwwpsx7vk" path="res://assets/menu_buttons.png" id="2_2e0ce"]
@@ -20,18 +20,6 @@ anti_aliasing = false
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_stdre"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qnbsb"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bs8u2"]
-atlas = ExtResource("2_2e0ce")
-region = Rect2(2, 49, 46, 13)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4v5dp"]
-atlas = ExtResource("3_bnrmd")
-region = Rect2(2, 49, 45, 12)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xg7qp"]
-atlas = ExtResource("4_lru4x")
-region = Rect2(2, 49, 46, 13)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uut3y"]
 atlas = ExtResource("2_2e0ce")
@@ -66,9 +54,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 11
 
-[node name="Separator" type="Control" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -87,13 +72,6 @@ theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_qnbsb"
 min_value = -20.0
 max_value = 0.0
 
-[node name="Controls" type="TextureButton" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-texture_normal = SubResource("AtlasTexture_bs8u2")
-texture_pressed = SubResource("AtlasTexture_4v5dp")
-texture_hover = SubResource("AtlasTexture_xg7qp")
-
 [node name="Back" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -102,5 +80,4 @@ texture_pressed = SubResource("AtlasTexture_lq2mf")
 texture_hover = SubResource("AtlasTexture_ie1mc")
 
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

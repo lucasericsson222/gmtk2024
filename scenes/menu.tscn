@@ -1,9 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://cp8c2cb4h268c"]
+[gd_scene load_steps=16 format=3 uid="uid://cp8c2cb4h268c"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_q0dbo"]
 [ext_resource type="Texture2D" uid="uid://dsxyjwwpsx7vk" path="res://assets/menu_buttons.png" id="2_apugt"]
+[ext_resource type="Texture2D" uid="uid://yivgsec34y5k" path="res://assets/title_screen_with_people_and_zombies.png" id="2_y8qkh"]
 [ext_resource type="Texture2D" uid="uid://mgav88ow3jbv" path="res://assets/menu_buttons_clicked.png" id="3_hvkmk"]
 [ext_resource type="Texture2D" uid="uid://cqt21v5t4j3oy" path="res://assets/menu_buttons_hover.png" id="4_nwyip"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnfio"]
+atlas = ExtResource("2_y8qkh")
+region = Rect2(25, 7, 96, 68)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ronr"]
 atlas = ExtResource("2_apugt")
@@ -68,24 +73,32 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 7
 
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_vnfio")
+
 [node name="Separator" type="Control" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 70)
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
 [node name="Play" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 texture_normal = SubResource("AtlasTexture_4ronr")
 texture_pressed = SubResource("AtlasTexture_s1ulu")
 texture_hover = SubResource("AtlasTexture_6u3li")
 
 [node name="Options" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 texture_normal = SubResource("AtlasTexture_sm6in")
 texture_pressed = SubResource("AtlasTexture_8yk28")
 texture_hover = SubResource("AtlasTexture_8c8km")
 
 [node name="Credits" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 texture_normal = SubResource("AtlasTexture_8e4nw")
 texture_pressed = SubResource("AtlasTexture_pvf42")
 texture_hover = SubResource("AtlasTexture_tsos5")
