@@ -1,7 +1,7 @@
 extends Node2D
-@export var threshold = 5
+@export var threshold = 30
 @export var big_zombie_points = 5
-const SCALE_RATE = 0.1
+const SCALE_RATE = 0.3
 
 var fade_out_scene = preload("res://scenes/fade_to_black.tscn")
 var win = false
@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 
 func _on_win_timer_timeout() -> void:
 	var outro_timer = Timer.new()
-	outro_timer.wait_time = 2
+	outro_timer.wait_time = 3
 	outro_timer.autostart = true
 	get_parent().add_child(outro_timer)
 	outro_timer.connect("timeout", _on_outro_timeout)
