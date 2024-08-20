@@ -203,7 +203,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y4jnb"]
 radius = 5.0
-height = 22.0
+height = 14.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ckssf"]
 radius = 5.0
@@ -222,7 +222,7 @@ frame = 11
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 6)
+position = Vector2(0, 9)
 shape = SubResource("CapsuleShape2D_y4jnb")
 
 [node name="ZombieComponent" type="Node" parent="."]
