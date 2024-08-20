@@ -15,7 +15,7 @@ func _on_body_entered(body: Node2D) -> void:
 		
 		var inner_count = 0
 		for zombie in zombies:
-			if zombie.has_method("ascend") and zombie.can_ascend:
+			if zombie.has_method("ascend") and zombie.can_ascend and zombie.state != zombie.DYING:
 				inner_count += 1
 		
 		if inner_count >= required_count:

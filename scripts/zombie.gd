@@ -26,6 +26,7 @@ func _physics_process(delta: float) -> void:
 		velocity = zombie_component.velocity
 	if $AnimatedSprite2D.animation == "death":
 		velocity = Vector2.ZERO
+		state = DYING
 	if state == THROWN:
 		z_velocity += z_gravity * delta
 		z_pos += z_velocity
@@ -49,6 +50,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func be_thrown(dir: float):
+	if state == DYING:
+		return
 	state = THROWN
 	velocity = thrown_speed * Vector2.RIGHT.rotated(dir)
 	$AnimatedSprite2D.animation = "thrown"

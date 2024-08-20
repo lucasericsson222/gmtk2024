@@ -33,6 +33,8 @@ func _physics_process(_delta: float) -> void:
 				for zombie: Node2D in zombies:
 					if zombie.get_instance_id() == get_instance_id():
 						continue
+					if zombie.state == zombie.DYING:
+						continue
 					var dist = (zombie.position - position).length()
 					if dist < min_dist:
 						closest = zombie
